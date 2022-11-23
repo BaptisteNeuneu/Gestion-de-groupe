@@ -10,8 +10,8 @@ public class VueAdmin {
 
         JFrame WindowsAdmin = new JFrame();
         WindowsAdmin.setSize(1000, 1000);
-
-        /* */ GridBagConstraints c = new GridBagConstraints();
+        GridLayout h = new GridLayout(5,1);
+        GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.VERTICAL;
         JButton AddEtu = new JButton("Ajout d'etudiant");
         JButton CreeGroup = new JButton("Cree Groupe");
@@ -23,6 +23,7 @@ public class VueAdmin {
         JLabel aff = new JLabel("affichage");
         Titre.add(titre);
         JPanel Menu = new JPanel();
+        Menu.setLayout(h);
         JPanel affichage = new JPanel();
         affichage.add(aff);
         WindowsAdmin.setLayout(new GridBagLayout());
