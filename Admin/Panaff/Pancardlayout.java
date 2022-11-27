@@ -29,7 +29,7 @@ public class Pancardlayout {
         addetu.add(nometudiant);
         etud = new JTextField(10);
         addetu.add(etud);
-        sousgroupe = new JLabel("numero du groupe");
+        sousgroupe = new JLabel("numero du groupe :");
         addetu.add(sousgroupe);
         groupe = new JTextField(10);
         addetu.add(groupe);
@@ -43,17 +43,31 @@ public class Pancardlayout {
         supgroup.add(sousgroupe);
         supgroup.add(groupe);
         c.add("supgroup",supgroup);
-
-
-
-        
-        
-
-
-
-
-
+        rengroup.setLayout(j);
+        rengroup.add(sousgroupe);
+        rengroup.add(groupe);
+        newgroupe = new JLabel("numero du nouveau groupe :");
+        ngroupe = new JTextField(10);
+        rengroup.add(newgroupe);
+        rengroup.add(ngroupe);
+        c.add("rengroup",rengroup);
+        h =  new GridLayout(3,1);
+        depetu.setLayout(h);
+        sousgroupe = new JLabel("numero du groupe actuel");
+        depetu.add(sousgroupe);
+        depetu.add(groupe);
+        depetu.add(nometudiant);
+        depetu.add(etud);
+        depetu.add(newgroupe);
+        depetu.add(ngroupe);
+        c.add("depetu",depetu);
         
     }
+
+    public JPanel getPanel(){
+        return this.c;
+    }
+
+    public CardLayout
 
 }

@@ -5,6 +5,8 @@ import javax.swing.*;
 import java.io.*;
 
 public class ActionMenuAdmin implements ActionListener, MouseListener {
+
+    CardLayout c;
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == AddEtu){
             
