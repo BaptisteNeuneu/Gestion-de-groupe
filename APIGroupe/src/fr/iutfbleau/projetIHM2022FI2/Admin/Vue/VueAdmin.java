@@ -73,11 +73,17 @@ public class VueAdmin {
         SupGroup.addActionListener(i);
         RenGroup.addActionListener(i);
         DepEtu.addActionListener(i);
+<<<<<<< HEAD
         WindowsAdmin.setResizable(false);
 
         WindowsAdmin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         WindowsAdmin.setVisible(true);
 
+=======
+        WindowsAdmin.setVisible(true);
+        WindowsAdmin.setResizable(false);
+        WindowsAdmin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+>>>>>>> master
 
     }
 

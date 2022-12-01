@@ -8,10 +8,24 @@ public class Pancardlayout {
     
     CardLayout card;
     JPanel c,addetu,creegroup,supgroup,rengroup,depetu;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    JLabel nometudiant,sousgroupe;
+    JTextField etud,groupe;
+    GridLayout j,g,h;
+    JButton valider;
+    GridLayout aff;
+=======
+>>>>>>> master
     JLabel nometudiant,sousgroupe,newgroupe;
     JTextField etud,groupe,ngroupe;
     GridLayout j,g,h;
     JButton valider;
+<<<<<<< HEAD
+=======
+>>>>>>> nevejans
+>>>>>>> master
 
     public Pancardlayout(JPanel a){
         this.c = a;
@@ -23,6 +37,18 @@ public class Pancardlayout {
         depetu = new JPanel();
         card = new CardLayout();
         c.setLayout(card);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+
+
+
+
+        
+    }
+
+=======
+>>>>>>> master
         j = new GridLayout(2,1);
         addetu.setLayout(j);
         nometudiant = new JLabel("Nom d'etudiant : ");
@@ -70,4 +96,8 @@ public class Pancardlayout {
 
     public CardLayout
 
+<<<<<<< HEAD
+=======
+>>>>>>> nevejans
+>>>>>>> master
 }
