@@ -5,6 +5,11 @@ import javax.swing.*;
 import java.io.*;
 
 public class ActionMenuAdmin implements ActionListener, MouseListener {
+<<<<<<< HEAD
+=======
+
+    CardLayout c;
+>>>>>>> nevejans
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == AddEtu){
             
