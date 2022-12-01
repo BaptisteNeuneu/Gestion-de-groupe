@@ -5,9 +5,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class PanneauEtu implements MouseListener{
-    JPanel
-    
-     panneau;
+    JPanel panneau;
     CardLayout layout;
     public PanneauEtu(){
         this.panneau = new JPanel
