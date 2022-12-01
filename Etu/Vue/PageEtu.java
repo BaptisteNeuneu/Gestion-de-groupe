@@ -4,21 +4,42 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 
-public class Page{
+public class PageEtu{
     //JPanel panneau;
     private GridBagLayout layout;
     private GridBagConstraints gbc;
+    private JScrollPane scroll;
     private JPanel panel; 
-    public Page(JPanel panneau,String texte){
+    public PageEtu(JPanel panneau,String texte){
         this.layout = new GridBagLayout();
         this.gbc = new GridBagConstraints();
         this.panel = new JPanel();
         this.panel.setBackground(Color.GRAY);
         this.panel.setLocation(0,0);
-        this.panel.setPreferredSize(new Dimension(700,700));
-        this.panel.setLayout(this.layout);
+        this.panel.setLayout(layout);
+        //ScrollPaneLayout layout2 = new ScrollPaneLayout();
+        //JScrollBar barreH = panel.createHorizontalScrollBar();
+        //JScrollBar barreV = panel.createVerticalScrollBar();
+        //panel.setRowHeaderView(barreH);
+        //panel.setColumnHeaderView(barreV);
+
+        this.scroll = new JScrollPane(this.panel);
+
+        //FenetreEtu f = new FenetreEtu(this.panel,texte);
+        //JViewport vue = f.getViewport();
+        //this.panel.setViewport(vue);
+
+
         ArrayDeque<String> liste = this.recupTableau();
         int seuil;
+        /*seuil=liste.size();
+        for(int i=1;i<=seuil;i++){
+            if(!liste.isEmpty()){
+                JButton b = new JButton(liste.remove());
+                //System.out.println();
+                vue.add(b);
+            }
+        }*/
         this.layoutOptions(1, 0, 2, 1, GridBagConstraints.NONE, GridBagConstraints.CENTER, 0.0, 0.0, new Insets(0, 0, 0, 0));
         this.panel.add(new JLabel(texte),this.gbc);
         seuil=liste.size();
@@ -58,14 +79,17 @@ public class Page{
         this.panel.add(espace, this.gbc);
     }
 
-    public JPanel getPanel(){
-        return this.panel;
+    public JScrollPane getPanel(){
+        return this.scroll;
     }
     public ArrayDeque<String> recupTableau(){
         ArrayDeque<String> liste = new ArrayDeque<String>();
         liste.add("groupe1");
         liste.add("groupe2");
         liste.add("groupe3");
+        liste.add("groupe4");
+        liste.add("groupe5");
+        liste.add("groupe6");
         return liste;
     }
 }

@@ -5,11 +5,15 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class PanneauEtu implements MouseListener{
-    JPanel panneau;
+    JPanel
+    
+     panneau;
     CardLayout layout;
     public PanneauEtu(){
-        this.panneau = new JPanel();
-        this.panneau.setMaximumSize(new Dimension(900,900));
+        this.panneau = new JPanel
+        
+        ();
+        this.panneau.setPreferredSize(new Dimension(700,900));
         this.layout = new CardLayout();
         this.panneau.setLayout(this.layout);
 
@@ -22,18 +26,21 @@ public class PanneauEtu implements MouseListener{
         this.panneau.addMouseListener(this);
     }
     public void createPanel(String texte) {
-        Page p= new Page(this.panneau,texte);
+        PageEtu p= new PageEtu(this.panneau,texte);
         this.panneau.add(p.getPanel());
-        System.out.println(p.getPanel());
+        //System.out.println(p.getPanel());
         //this.panneau.add(new JLabel(texte));
     }
-    public JPanel getPanneau(){
+    public JPanel
+    
+     getPanneau(){
         //Page p= new Page(this.panneau,"1");
         //return p.getPanel();
         return this.panneau;
     }
     public void mousePressed(MouseEvent e){
-        System.out.println("oui");
+        System.out.println(e.getX());
+        System.out.println(e.getY());
         this.layout.next(this.panneau);
     }
     public void mouseClicked(MouseEvent e){
