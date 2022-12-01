@@ -10,6 +10,7 @@ public class AbstractChangementFactoryNP implements AbstractChangementFactory {
 
     // l'usine à groupe travaillant en tandem avec cette usine.
     private AbstractGroupeFactory agf;
+    = DriverManager.getConnection("jdbc:mariadb://dwarves.iut-fbleau.fr/fouche","fouche", "fouche");
 
     // On utilise une table de hachage pour retrouver facilement un changement (à partir de son id).
     // Si il y a beaucoup de changements c'est plus rapide que de parcourir toute une liste.
