@@ -1,6 +1,6 @@
-package FIprojetIHM2022.Etu;
+package fr.iutfbleau.projetIHM2022FI2.Etu;
 
-import FIprojetIHM2022.Etu.Vue.*;
+import fr.iutfbleau.projetIHM2022FI2.Etu.Vue.*;
 
 public class MainEtu {
     public static void main(String[] args) {

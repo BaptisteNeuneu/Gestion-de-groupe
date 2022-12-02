@@ -1,4 +1,4 @@
-package FIprojetIHM2022.Etu.Vue;
+package fr.iutfbleau.projetIHM2022FI2.Etu.Vue;
 
 
 import javax.swing.*;
@@ -25,16 +25,16 @@ public class VueEtu {
         //JLabel aff = new JLabel("affichage");
         Titre.add(titre,BorderLayout.CENTER);
         JPanel Menu = new JPanel();
-        this.absoluteSize(Menu,menuHorizontal,menuVertical);
-        this.absoluteSize(AffGroup,menuHorizontal,menuVertical/4);
-        this.absoluteSize(AffEtu,menuHorizontal,menuVertical/4);
-        this.absoluteSize(AffChang,menuHorizontal,menuVertical/4);
-        this.absoluteSize(Chang,menuHorizontal,menuVertical/4);
+        VueEtu.absoluteSize(Menu,menuHorizontal,menuVertical);
+        VueEtu.absoluteSize(AffGroup,menuHorizontal,menuVertical/4);
+        VueEtu.absoluteSize(AffEtu,menuHorizontal,menuVertical/4);
+        VueEtu.absoluteSize(AffChang,menuHorizontal,menuVertical/4);
+        VueEtu.absoluteSize(Chang,menuHorizontal,menuVertical/4);
         Menu.setLayout(new GridLayout(4,1));
         //System.out.println(Menu);
         JPanel affichage = p.getPanneau();
-        this.absoluteSize(affichage,700,900);
-        this.absoluteSize(Titre,1000,100);
+        VueEtu.absoluteSize(affichage,700,900);
+        VueEtu.absoluteSize(Titre,1000,100);
         WindowsAdmin.setLayout(new GridBagLayout());
         Titre.setBorder(BorderFactory.createLineBorder(Color.black, 1));
         c.gridx = 0;
@@ -71,7 +71,7 @@ public class VueEtu {
 
     }
 
-    public void absoluteSize(Component comp,int x,int y){
+    public static void absoluteSize(Component comp,int x,int y){
         comp.setSize(new Dimension(x,y));
         comp.setMinimumSize(new Dimension(x,y));
         comp.setPreferredSize(new Dimension(x,y));
