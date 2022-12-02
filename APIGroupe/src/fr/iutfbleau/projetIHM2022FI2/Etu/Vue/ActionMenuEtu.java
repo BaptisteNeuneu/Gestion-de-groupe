@@ -1,4 +1,4 @@
-package FIprojetIHM2022.Etu.Vue;
+package fr.iutfbleau.projetIHM2022FI2.Etu.Vue;
 
 import javax.swing.*;
 import java.awt.*;
