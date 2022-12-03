@@ -5,13 +5,15 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class PanneauEtu{
-    JPanel panneau;
-    CardLayout layout;
-    public PanneauEtu(){
-        this.panneau = new JPanel
-        
-        ();
-        this.panneau.setPreferredSize(new Dimension(700,900));
+    private JPanel panneau;
+    private CardLayout layout;
+    private int longueur;
+    private int hauteur; 
+    public PanneauEtu(int l, int h){
+        this.longueur=l;
+        this.hauteur=h;
+        this.panneau = new JPanel();
+        //this.panneau.setPreferredSize(new Dimension(1200,900));
         this.layout = new CardLayout();
         this.panneau.setLayout(this.layout);
 
@@ -24,8 +26,8 @@ public class PanneauEtu{
         //this.panneau.addMouseListener();
     }
     public void createPanel(int dif) {
-        PageEtu p= new PageEtu(this.panneau,dif);
-        this.panneau.add(p.getPanel());
+        PageEtu p= new PageEtu(this.panneau,dif,this.longueur,this.hauteur);
+        this.panneau.add(p.getScroll());
         //System.out.println(p.getPanel());
         //this.panneau.add(new JLabel(texte));
     }

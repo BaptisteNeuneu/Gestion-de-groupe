@@ -1,4 +1,4 @@
-public class DemandeEtu {
+/*public class DemandeEtu {
     JPanel panel;
     public DemandeEtu(JPanel p){
         panel = new JPanel(){
@@ -8,4 +8,4 @@ public class DemandeEtu {
     public getPanel(){
         return this.panel;
     }
-}
+}*/

@@ -8,10 +8,12 @@ public class VueEtu {
     public void Vue2() {
         final int menuHorizontal=300;
         final int menuVertical=800;
+        final int fenetreHorizontal=1500;
+        final int fenetreVertical=1000;
         JFrame WindowsAdmin = new JFrame();
-        WindowsAdmin.setSize(1000, 1000);
+        WindowsAdmin.setSize(fenetreHorizontal,fenetreVertical);
 
-        PanneauEtu p = new PanneauEtu();
+        PanneauEtu p = new PanneauEtu(fenetreHorizontal-300,fenetreVertical-100);
 
         /* */ GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.VERTICAL;
@@ -33,7 +35,7 @@ public class VueEtu {
         Menu.setLayout(new GridLayout(4,1));
         //System.out.println(Menu);
         JPanel affichage = p.getPanneau();
-        VueEtu.absoluteSize(affichage,700,900);
+        VueEtu.absoluteSize(affichage,fenetreHorizontal-300,fenetreVertical-100);
         VueEtu.absoluteSize(Titre,1000,100);
         WindowsAdmin.setLayout(new GridBagLayout());
         Titre.setBorder(BorderFactory.createLineBorder(Color.black, 1));
