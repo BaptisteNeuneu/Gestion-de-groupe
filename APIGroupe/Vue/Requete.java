@@ -16,7 +16,11 @@ public static Connection getCon() throws SQLException{
 				Connection con = Requete.getCon();
 				try{
 		    		PreparedStatement req = con.prepareStatement("INSERT INTO Etudiant (id,nom,prenom) VALUES(?,?,?);");
+<<<<<<< HEAD
+					req.setInt(1,2);
+=======
 					req.setNString(1,"2");
+>>>>>>> master
 					req.setNString(2,"nom2");
 					req.setNString(3,"prenom2");
 					System.out.println(req);
@@ -63,6 +67,8 @@ public static Connection getCon() throws SQLException{
 	    	System.out.println("Erreur de connexion le pilote n'est pas disponible");
 		}
     }
+<<<<<<< HEAD
+=======
 	public static void insertGroupe(){
 		try{
 	    	Class.forName("org.mariadb.jdbc.Driver");		
@@ -191,4 +197,5 @@ public static Connection getCon() throws SQLException{
 	    	System.out.println("Erreur de connexion le pilote n'est pas disponible");
 		}
     }
+>>>>>>> master
 }

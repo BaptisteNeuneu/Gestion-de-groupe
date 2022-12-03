@@ -5,7 +5,7 @@ import javax.swing.*;
 
 import fr.iutfbleau.projetIHM2022FI2.Admin.Vue.*;
 
-public class ActionMenuAdmin implements ActionListener, MouseListener {
+public class ActionMenuAdmin implements ActionListener {
 
     JButton AddEtu,CreeGroup,SupGroup,RenGroup,DepEtu;
     Pancardlayout a;
@@ -15,7 +15,7 @@ public class ActionMenuAdmin implements ActionListener, MouseListener {
         this.SupGroup = SupGroup;
         this.RenGroup = RenGroup;
         this.DepEtu = DepEtu;
-        this.a =a;
+        this.a = a;
     }
     public void actionPerformed(ActionEvent e){
         if(e.getSource() == AddEtu){
@@ -35,30 +35,6 @@ public class ActionMenuAdmin implements ActionListener, MouseListener {
         }
 
     }
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        // TODO Auto-generated method stub
-        
-    }
-    @Override
-    public void mouseEntered(MouseEvent e) {
-        // TODO Auto-generated method stub
-        
-    }
-    @Override
-    public void mouseExited(MouseEvent e) {
-        // TODO Auto-generated method stub
-        
-    }
-    @Override
-    public void mousePressed(MouseEvent e) {
-        // TODO Auto-generated method stub
-        
-    }
-    @Override
-    public void mouseReleased(MouseEvent e) {
-        // TODO Auto-generated method stub
-        
-    }
+
     
 }
