@@ -23,12 +23,8 @@ public Pancardlayout(JPanel instru){
     this.instru = instru;
 }
 
-    public JPanel adPanel(){
-        textaddetu = "texaddetu";
-        textcreegroup = "textcreegroup";
-        textsupgroup = "textsupgroup";
-        textrengroup = "textrnegroup";
-        textdepetu = "textdepetu";
+    public void adPanel(){
+
         addetu = new JPanel();
         creegroup = new JPanel();
         supgroup = new JPanel();
@@ -47,18 +43,18 @@ public Pancardlayout(JPanel instru){
         groupe = new JTextField(10);
         addetu.add(groupe);
         addetu.add(valaddetu);
-        instru.add(textaddetu,addetu);
+        instru.add(addetu, "texaddetu");
         g = new GridLayout(2,1);
         creegroup.setLayout(g);
         creegroup.add(sousgroupe);
         creegroup.add(groupe);
         creegroup.add(valcreegroup);
-        instru.add(textcreegroup,creegroup);
+        instru.add(creegroup, "textcreegroup");
         supgroup.setLayout(g);
         supgroup.add(sousgroupe);
         supgroup.add(groupe);
         supgroup.add(valsupgroup);
-        instru.add(textsupgroup,supgroup);
+        instru.add(supgroup,"textsupgroup");
         rengroup.setLayout(j);
         rengroup.add(sousgroupe);
         rengroup.add(groupe);
@@ -67,7 +63,7 @@ public Pancardlayout(JPanel instru){
         rengroup.add(newgroupe);
         rengroup.add(ngroupe);
         rengroup.add(valrengroup);
-        instru.add(textrengroup,rengroup);
+        instru.add(rengroup,"textrengroup");
         h =  new GridLayout(3,1);
         depetu.setLayout(h);
         sousgroupe = new JLabel("numero du groupe actuel");
@@ -78,36 +74,39 @@ public Pancardlayout(JPanel instru){
         depetu.add(newgroupe);
         depetu.add(ngroupe);
         depetu.add(valdepetu);
-        instru.add(textdepetu,depetu);
-        return instru;
+        instru.add(depetu, "textdepetu");
+        
     }
 
     public JPanel getPanel(){
         return this.instru;
     }
 
-    public JPanel getaddetu(){
-        card.show(instru, textaddetu);
-        return instru;
+    public void getaddetu(){
+        card.show(instru, "textaddetu");
+
     }
 
-    public JPanel getcreegroup(){
-        card.show(instru, textcreegroup);
-        return instru;
+    public void getcreegroup(){
+        card.show(instru, "textcreegroup");
+
     }
 
-    public JPanel getsupgroup(){
-        card.show(instru,textsupgroup);
-        return instru;
+    public void getsupgroup(){
+        card.show(instru,"textsupgroup");
+
     }
 
-    public JPanel getrengroup(){
-        card.show(instru,textrengroup);
-        return instru;
+    public void getrengroup(){
+        card.show(instru,"textrengroup");
+
     }
 
-    public JPanel getdepetu(){
-        card.show(instru,textdepetu);
-        return instru;
+    public void getdepetu(){
+        card.show(instru,"textdepetu");
+    }
+
+    public Pancardlayout gePancardlayout(){
+        return this;
     }
 }

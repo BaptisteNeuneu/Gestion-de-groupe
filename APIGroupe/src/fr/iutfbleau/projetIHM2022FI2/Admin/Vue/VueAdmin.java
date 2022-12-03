@@ -57,8 +57,8 @@ public class VueAdmin {
         affichage.setLayout(j);
         JPanel instru = new JPanel();
         Pancardlayout l = new Pancardlayout(instru);
-        instru = l.adPanel();
-        l.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+        l.adPanel();
+        instru.setBorder(BorderFactory.createLineBorder(Color.black, 1));
         affichage.add(instru);
         JScrollPane affgroup = new JScrollPane();
         affgroup.setBorder(BorderFactory.createLineBorder(Color.black, 1));
@@ -73,17 +73,12 @@ public class VueAdmin {
         SupGroup.addActionListener(i);
         RenGroup.addActionListener(i);
         DepEtu.addActionListener(i);
-<<<<<<< HEAD
+
         WindowsAdmin.setResizable(false);
 
         WindowsAdmin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         WindowsAdmin.setVisible(true);
 
-=======
-        WindowsAdmin.setVisible(true);
-        WindowsAdmin.setResizable(false);
-        WindowsAdmin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
->>>>>>> master
 
     }
 
