@@ -15,7 +15,7 @@ public class VueEtu {
                 /* */ GridBagConstraints c = new GridBagConstraints();
                 c.fill = GridBagConstraints.VERTICAL;
                 JButton AffGroup = new JButton("Afficher groupes");
-                JButton AffEtu = new JButton("afficher étudiant");
+                JButton AffEtu = new JButton("afficher etudiant");
                 JButton AffChang = new JButton("afficher changement groupe");
                 JButton Chang = new JButton("faire changement groupe");
                 JPanel Titre = new JPanel();
