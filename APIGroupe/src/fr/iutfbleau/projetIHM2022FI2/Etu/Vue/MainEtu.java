@@ -1,4 +1,4 @@
-package fr.iutfbleau.projetIHM2022FI2.Etu;
+package fr.iutfbleau.projetIHM2022FI2.Etu.Vue;
 
 import fr.iutfbleau.projetIHM2022FI2.Etu.Vue.*;
 

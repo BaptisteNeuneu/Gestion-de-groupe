@@ -1,22 +1,21 @@
-package fr.iutfbleau.projetIHM2022FI2.Etu.Vue;
+package fr.iutfbleau.projetIHM2022FI2.Prof.Vue;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class VueEtu {
-        public void Vue2() {
+public class VueProf {
+        public void Vue3() {
                 final int menuHorizontal = 300;
                 final int menuVertical = 800;
                 final int fenetreHorizontal = 1500;
                 final int fenetreVertical = 1000;
                 JFrame WindowsAdmin = new JFrame();
                 WindowsAdmin.setSize(fenetreHorizontal, fenetreVertical);
-                PanneauEtu p = new PanneauEtu(fenetreHorizontal - 300, fenetreVertical - 100);
+                PanneauProf p = new PanneauProf(fenetreHorizontal - 300, fenetreVertical - 100);
                 /* */ GridBagConstraints c = new GridBagConstraints();
                 c.fill = GridBagConstraints.VERTICAL;
                 JButton AffGroup = new JButton("Afficher groupes");
                 JButton AffEtu = new JButton("afficher étudiant");
-                JButton AffChang = new JButton("afficher changement groupe");
                 JButton Chang = new JButton("faire changement groupe");
                 JPanel Titre = new JPanel();
                 // Titre.setLayout(new BorderLayout());
@@ -24,16 +23,15 @@ public class VueEtu {
                 // JLabel aff = new JLabel("affichage");
                 Titre.add(titre, BorderLayout.CENTER);
                 JPanel Menu = new JPanel();
-                StaticMethodeEtu.absoluteSize(Menu, menuHorizontal, menuVertical);
-                StaticMethodeEtu.absoluteSize(AffGroup, menuHorizontal, menuVertical / 4);
-                StaticMethodeEtu.absoluteSize(AffEtu, menuHorizontal, menuVertical / 4);
-                StaticMethodeEtu.absoluteSize(AffChang, menuHorizontal, menuVertical / 4);
-                StaticMethodeEtu.absoluteSize(Chang, menuHorizontal, menuVertical / 4);
-                Menu.setLayout(new GridLayout(4, 1));
+                StaticMethodeProf.absoluteSize(Menu, menuHorizontal, menuVertical);
+                StaticMethodeProf.absoluteSize(AffGroup, menuHorizontal, menuVertical / 3);
+                StaticMethodeProf.absoluteSize(AffEtu, menuHorizontal, menuVertical / 3);
+                StaticMethodeProf.absoluteSize(Chang, menuHorizontal, menuVertical / 3);
+                Menu.setLayout(new GridLayout(3, 1));
                 // System.out.println(Menu);
                 JPanel affichage = p.getPanneau();
-                StaticMethodeEtu.absoluteSize(affichage, fenetreHorizontal - 300, fenetreVertical - 100);
-                StaticMethodeEtu.absoluteSize(Titre, 1000, 100);
+                StaticMethodeProf.absoluteSize(affichage, fenetreHorizontal - 300, fenetreVertical - 100);
+                StaticMethodeProf.absoluteSize(Titre, 1000, 100);
                 WindowsAdmin.setLayout(new GridBagLayout());
                 Titre.setBorder(BorderFactory.createLineBorder(Color.black, 1));
                 c.gridx = 0;
@@ -57,15 +55,13 @@ public class VueEtu {
                 WindowsAdmin.add(affichage, c);
                 Menu.add(AffGroup);
                 Menu.add(AffEtu);
-                Menu.add(AffChang);
                 Menu.add(Chang);
-                ActionMenuEtu act = new ActionMenuEtu(p.getLayout(), AffGroup, AffEtu, AffChang, Chang, affichage);
+                ActionMenuProf act = new ActionMenuProf(p.getLayout(), AffGroup, AffEtu, Chang, affichage);
                 WindowsAdmin.setVisible(true);
                 WindowsAdmin.setResizable(false);
                 WindowsAdmin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 AffGroup.addActionListener(act);
                 AffEtu.addActionListener(act);
-                AffChang.addActionListener(act);
                 Chang.addActionListener(act);
         }
 }

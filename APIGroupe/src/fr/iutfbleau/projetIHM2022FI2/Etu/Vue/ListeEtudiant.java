@@ -14,7 +14,9 @@ public class ListeEtudiant{
     private int hauteurFixe;
     private final int limite=10;
     private int seuil;
+    private ArrayList<JButton> listeBouton;
     public void ajouter(PageEtu fenetre,int l,int h){
+        this.listeBouton = new ArrayList<JButton>();
         this.page=fenetre;
         this.longueurFixe=l;
         this.hauteurFixe=h;
@@ -24,6 +26,7 @@ public class ListeEtudiant{
         this.ajoutLien();
         this.ajoutEntete();
         this.page.setPanel(this.panel2);
+        this.ajoutListener();
     }
     public void ajoutEntete(){
         final int longueurEntete = 4;
@@ -50,7 +53,7 @@ public class ListeEtudiant{
             champ.setBorder(BorderFactory.createLineBorder(Color.BLACK));
             p.add(champ);
         }
-        VueEtu.absoluteSize(p,this.longueurFixe*longueurEntete,this.hauteurFixe);
+        StaticMethodeEtu.absoluteSize(p,this.longueurFixe*longueurEntete,this.hauteurFixe);
         this.page.layoutOptions(0, 1, longueurEntete, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER, 0.0, 0.0, new Insets(0, 0, 0, 0));
         this.panel2.add(p,this.page.getGbc());
     }
@@ -87,7 +90,7 @@ public class ListeEtudiant{
                     champ.setBorder(BorderFactory.createLineBorder(Color.BLACK));
                     p.add(champ);
                 }
-                VueEtu.absoluteSize(p,longueurFixe*longueurCorps,hauteurFixe);
+                StaticMethodeEtu.absoluteSize(p,longueurFixe*longueurCorps,hauteurFixe);
                 this.page.layoutOptions(0, i+1, longueurCorps, 1, GridBagConstraints.NONE, GridBagConstraints.CENTER, 0.0, 0.0, new Insets(0, 0, 0, 0));
                 this.panel2.add(p,this.page.getGbc());
             }else{
@@ -103,15 +106,21 @@ public class ListeEtudiant{
         this.page.layoutOptions(0, 0, 4, 1, GridBagConstraints.NONE, GridBagConstraints.CENTER, 0.0, 0.0, new Insets(0, 0, 0, 0));
         this.panel2.add(titre,this.page.getGbc());
     } 
-     public void ajoutLien(){
+    public void ajoutLien(){
         for(int i=1;i<=this.seuil;i++){
             String texte=" ";
             JButton lien = new JButton(texte);
             lien.setFont(new Font(Font.SERIF, Font.PLAIN, 30));
             lien.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-            VueEtu.absoluteSize(lien,this.longueurFixe,this.hauteurFixe);
+            StaticMethodeEtu.absoluteSize(lien,this.longueurFixe,this.hauteurFixe);
             this.page.layoutOptions(3, i+1, 1, 1, GridBagConstraints.NONE, GridBagConstraints.CENTER, 0.0, 0.0, new Insets(0, 0, 0, 0));
             this.panel2.add(lien,this.page.getGbc());
+            this.listeBouton.add(lien);
+        }
+    }
+    public void ajoutListener(){
+        for(int i=0;i<this.listeBouton.size();i++){
+            this.listeBouton.get(i).addActionListener(new ActionListeEtu(this.page.getPremierPanneau().getLayout(),this.page.getPremierPanneau().getPanneau(),this.page.getDif(),this.listeBouton));
         }
     }
 }

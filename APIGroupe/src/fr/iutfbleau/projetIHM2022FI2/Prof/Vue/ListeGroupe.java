@@ -1,4 +1,4 @@
-package fr.iutfbleau.projetIHM2022FI2.Etu.Vue;
+package fr.iutfbleau.projetIHM2022FI2.Prof.Vue;
 
 import fr.iutfbleau.projetIHM2022FI2.API.*;
 import fr.iutfbleau.projetIHM2022FI2.MNP.*;
@@ -7,15 +7,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 
-public class ListeChangement{
+public class ListeGroupe{
     private JPanel panel2;
-    private PageEtu page;
+    private PageProf page;
     private int longueurFixe;
     private int hauteurFixe;
     private final int limite=10;
     private int seuil;
     private ArrayList<JButton> listeBouton;
-    public void ajouter(PageEtu fenetre,int l,int h){
+    public void ajouter(PageProf fenetre,int l,int h){
         this.listeBouton = new ArrayList<JButton>();
         this.page=fenetre;
         this.longueurFixe=l;
@@ -39,25 +39,25 @@ public class ListeChangement{
                 matricule = "Id :";
                 break;
                 case 1:
-                matricule = "NomEtu :";
+                matricule = "Name :";
                 break;
                 case 2:
-                matricule = "PrénomEtu :";
+                matricule = "Type :";
                 break;
                 case 3:
-                matricule = "NomGroupeA :";
+                matricule = "Pere :";
                 break;
                 case 4:
-                matricule = "NomGroupeB :";
+                matricule = "Size :";
                 break;
                 case 5:
-                matricule = "Lien Etudiant:";
+                matricule = "Min :";
                 break;
                 case 6:
-                matricule = "Lien GroupeA:";
+                matricule = "Max :";
                 break;
                 case 7:
-                matricule = "Lien GroupeB:";
+                matricule = "Lien :";
                 break;
             }
             JLabel champ = new JLabel (matricule);
@@ -65,13 +65,14 @@ public class ListeChangement{
             champ.setBorder(BorderFactory.createLineBorder(Color.BLACK));
             p.add(champ);
         }
-        StaticMethodeEtu.absoluteSize(p,this.longueurFixe*longueurEntete,this.hauteurFixe);
+        StaticMethodeProf.absoluteSize(p,this.longueurFixe*longueurEntete,this.hauteurFixe);
         this.page.layoutOptions(0, 1, longueurEntete, 1, GridBagConstraints.BOTH, GridBagConstraints.CENTER, 0.0, 0.0, new Insets(0, 0, 0, 0));
         this.panel2.add(p,this.page.getGbc());
     }
+
     public void ajoutCorps(){
-        final int longueurCorps = 5;
-        ArrayDeque<ChangementNP> liste = this.page.recupTableau2();
+        final int longueurCorps = 7;
+        ArrayDeque<GroupeNP> liste = this.page.recupTableau0();
         this.seuil=liste.size();
         int max=0;
         if(this.limite>this.seuil){
@@ -81,26 +82,32 @@ public class ListeChangement{
         }
         for(int i=1;i<=max;i++){
             if(!liste.isEmpty()){
-                ChangementNP changement0 = liste.remove();
+                GroupeNP groupe0 = liste.remove();
                 JPanel p = new JPanel();
                 p.setLayout(new GridLayout(1,longueurCorps));
                 for (int j=0;j<longueurCorps;j++){
                     String matricule="";
                     switch(j){
                         case 0:
-                        matricule = Integer.toString(changement0.getId());
+                        matricule = Integer.toString(groupe0.getId());
                         break;
                         case 1:
-                        matricule = changement0.getEtu().getNom();
+                        matricule = groupe0.getName();
                         break;
                         case 2:
-                        matricule = changement0.getEtu().getPrenom();
+                        matricule = groupe0.getType().toString();
                         break;
                         case 3:
-                        matricule = changement0.getA().getName();
+                        matricule = groupe0.getPointPoint().getName();
                         break;
                         case 4:
-                        matricule = changement0.getB().getName();
+                        matricule = Integer.toString(groupe0.getSize());
+                        break;
+                        case 5:
+                        matricule = Integer.toString(groupe0.getMin());
+                        break;
+                        case 6:
+                        matricule = Integer.toString(groupe0.getMax());
                         break;
                     }
                     JLabel champ = new JLabel (matricule);
@@ -108,7 +115,7 @@ public class ListeChangement{
                     champ.setBorder(BorderFactory.createLineBorder(Color.BLACK));
                     p.add(champ);
                 }
-                StaticMethodeEtu.absoluteSize(p,longueurFixe*longueurCorps,hauteurFixe);
+                StaticMethodeProf.absoluteSize(p,longueurFixe*longueurCorps,hauteurFixe);
                 this.page.layoutOptions(0, i+1, longueurCorps, 1, GridBagConstraints.NONE, GridBagConstraints.CENTER, 0.0, 0.0, new Insets(0, 0, 0, 0));
                 this.panel2.add(p,this.page.getGbc());
             }else{
@@ -117,30 +124,28 @@ public class ListeChangement{
         }
     }
     public void ajoutTitre(){
-        String texte="Voir les demandes de changements de groupes";
+        String texte="Affichage des groupes";
         JLabel titre = new JLabel(texte);
         titre.setFont(new Font(Font.SERIF, Font.PLAIN, 30));
         titre.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         this.page.layoutOptions(0, 0, 8, 1, GridBagConstraints.NONE, GridBagConstraints.CENTER, 0.0, 0.0, new Insets(0, 0, 0, 0));
         this.panel2.add(titre,this.page.getGbc());
-    } 
+    }
     public void ajoutLien(){
-        for(int j=0;j<3;j++){
-            for(int i=1;i<=this.seuil;i++){
-                String texte=" ";
-                JButton lien = new JButton(texte);
-                lien.setFont(new Font(Font.SERIF, Font.PLAIN, 30));
-                lien.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-                StaticMethodeEtu.absoluteSize(lien,this.longueurFixe,this.hauteurFixe);
-                this.page.layoutOptions(j+5, i+1, 1, 1, GridBagConstraints.NONE, GridBagConstraints.CENTER, 0.0, 0.0, new Insets(0, 0, 0, 0));
-                this.panel2.add(lien,this.page.getGbc());
-                this.listeBouton.add(lien);
-            }
+        for(int i=1;i<=this.seuil;i++){
+            String texte=" ";
+            JButton lien = new JButton(texte);
+            lien.setFont(new Font(Font.SERIF, Font.PLAIN, 30));
+            lien.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            StaticMethodeProf.absoluteSize(lien,this.longueurFixe,this.hauteurFixe);
+            this.page.layoutOptions(7, i+1, 1, 1, GridBagConstraints.NONE, GridBagConstraints.CENTER, 0.0, 0.0, new Insets(0, 0, 0, 0));
+            this.panel2.add(lien,this.page.getGbc());
+            this.listeBouton.add(lien);
         }
     }
     public void ajoutListener(){
         for(int i=0;i<this.listeBouton.size();i++){
-            this.listeBouton.get(i).addActionListener(new ActionListeEtu(this.page.getPremierPanneau().getLayout(),this.page.getPremierPanneau().getPanneau(),this.page.getDif(),this.listeBouton));
+            this.listeBouton.get(i).addActionListener(new ActionListeProf(this.page.getPremierPanneau().getLayout(),this.page.getPremierPanneau().getPanneau(),this.page.getDif(),this.listeBouton));
         }
     }
 }

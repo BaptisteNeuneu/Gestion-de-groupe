@@ -1,6 +1,4 @@
-package FIprojetIHM2022.Prof;
-
-import FIprojetIHM2022.Prof.Vue.*;
+package fr.iutfbleau.projetIHM2022FI2.Prof.Vue;
 
 public class MainProf {
     public static void main(String[] args) {

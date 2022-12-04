@@ -1,4 +1,4 @@
-package fr.iutfbleau.projetIHM2022FI2.Etu.Vue;
+package fr.iutfbleau.projetIHM2022FI2.Prof.Vue;
 
 import fr.iutfbleau.projetIHM2022FI2.API.*;
 import fr.iutfbleau.projetIHM2022FI2.MNP.*;
@@ -7,7 +7,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 
-public class PageEtu{
+public class PageProf{
     //JPanel panneau;
     private GridBagLayout layout;
     private GridBagConstraints gbc;
@@ -16,8 +16,8 @@ public class PageEtu{
     private int dif;
     private int longueurFixe;
     private int hauteurFixe;
-    private PanneauEtu premierPanneau;
-    public PageEtu(PanneauEtu panel,JPanel panneau,int d,int l,int h){
+    private PanneauProf premierPanneau;
+    public PageProf(PanneauProf panel,JPanel panneau,int d,int l,int h){
         this.premierPanneau=panel;
         this.longueurFixe=l;
         this.hauteurFixe=h;
@@ -38,9 +38,6 @@ public class PageEtu{
             this.listeEtudiant();
         }
         if(this.dif==2){
-            this.listeChangement();
-        }
-        if(this.dif==3){
             this.changement();
         }
     }
@@ -119,37 +116,6 @@ public class PageEtu{
         }
         return null;
     }
-    public ArrayDeque<ChangementNP> recupTableau2(){
-            GroupeNP groupe1 = new GroupeNP("Groupe1",0,10);
-            GroupeNP groupe2 = new GroupeNP("Groupe2",0,10);
-            GroupeNP groupe3 = new GroupeNP("Groupe3",0,10);
-            GroupeNP groupe4 = new GroupeNP("Groupe4",0,10);
-            GroupeNP groupe5 = new GroupeNP("Groupe5",0,10);
-            GroupeNP groupe6 = new GroupeNP("Groupe6",0,10);
-            EtudiantNP etudiant1 = new EtudiantNP("nom1","prenom1");
-            EtudiantNP etudiant2 = new EtudiantNP("nom2","prenom2");
-            EtudiantNP etudiant3 = new EtudiantNP("nom3","prenom3");
-            EtudiantNP etudiant4 = new EtudiantNP("nom4","prenom4");
-            EtudiantNP etudiant5 = new EtudiantNP("nom5","prenom5");
-            EtudiantNP etudiant6 = new EtudiantNP("nom6","prenom6");
-            ChangementNP changement1 = new ChangementNP(groupe1,etudiant1,groupe2);
-            ChangementNP changement2 = new ChangementNP(groupe2,etudiant2,groupe3);
-            ChangementNP changement3 = new ChangementNP(groupe3,etudiant3,groupe4);
-            ChangementNP changement4 = new ChangementNP(groupe4,etudiant4,groupe5);
-            ChangementNP changement5 = new ChangementNP(groupe5,etudiant5,groupe6);
-            ChangementNP changement6 = new ChangementNP(groupe6,etudiant6,groupe1);
-        if(this.dif==2){
-            ArrayDeque<ChangementNP> liste = new ArrayDeque<ChangementNP>();
-            liste.add(changement1);
-            liste.add(changement2);
-            liste.add(changement3);
-            liste.add(changement4);
-            liste.add(changement5);
-            liste.add(changement6);
-            return liste;
-        }
-        return null;
-    }
     public void listeGroupe(){
         ListeGroupe liste = new ListeGroupe();
         liste.ajouter(this,this.longueurFixe/8,this.hauteurFixe/11);
@@ -157,10 +123,6 @@ public class PageEtu{
     public void listeEtudiant(){
         ListeEtudiant liste = new ListeEtudiant();
         liste.ajouter(this,this.longueurFixe/4,this.hauteurFixe/11);
-    }
-    public void listeChangement(){
-        ListeChangement liste = new ListeChangement();
-        liste.ajouter(this,this.longueurFixe/8,this.hauteurFixe/11);
     }
     public void changement(){
        //DemandeEtu demande = new DemandeEtu();
@@ -177,7 +139,7 @@ public class PageEtu{
     public int getDif(){
         return this.dif;
     }
-    public PanneauEtu getPremierPanneau(){
+    public PanneauProf getPremierPanneau(){
         return this.premierPanneau;
     }
 }
