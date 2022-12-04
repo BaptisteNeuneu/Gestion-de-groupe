@@ -46,4 +46,10 @@ public interface Changement extends MonPrint {
         return sb.toString();
     }
 
+    /**
+     * permet de récupérer l'explication du changement
+     * @return l'explication
+     */
+    public String getExplication();
+
 }

@@ -89,6 +89,12 @@ public interface Groupe extends MonPrint {
      * @return l'ensemble des étudiants.
      */
     public Set<Etudiant> getEtudiants();
+
+    /**
+     * permet de renommer un groupe.
+     * @param name le nom.
+     */
+    public void setName(String name);
     
     /**
      * @see MonPrint
