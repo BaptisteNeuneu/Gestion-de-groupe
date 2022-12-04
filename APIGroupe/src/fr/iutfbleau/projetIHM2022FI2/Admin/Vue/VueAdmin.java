@@ -8,9 +8,12 @@ import fr.iutfbleau.projetIHM2022FI2.Admin.Controleur.*;
 public class VueAdmin {
 
     public void Vue1() {
-
+        final int menuHorizontal = 300;
+        final int menuVertical = 800;
+        final int fenetreHorizontal = 1000;
+        final int fenetreVertical = 1000;
         JFrame WindowsAdmin = new JFrame();
-        this.absoluteSize(WindowsAdmin, 1000, 1000);
+        this.absoluteSize(WindowsAdmin, fenetreHorizontal, fenetreVertical);
         GridLayout h = new GridLayout(5,1);
         GridLayout j = new GridLayout(2,1);
         GridBagConstraints c = new GridBagConstraints();
@@ -33,7 +36,12 @@ public class VueAdmin {
         c.gridwidth = 2;
         WindowsAdmin.add(Titre, c);
         JPanel Menu = new JPanel();
-        this.absoluteSize(Menu, 300, 800);
+        this.absoluteSize(Menu,menuHorizontal,menuVertical);
+        this.absoluteSize(AddEtu,menuHorizontal-50,menuVertical/5 - 50);
+        this.absoluteSize(CreeGroup, menuHorizontal-50, menuVertical/5-50);
+        this.absoluteSize(SupGroup, menuHorizontal-50, menuVertical/5 -50);
+        this.absoluteSize(RenGroup, menuHorizontal-50, fenetreVertical/5-50);
+        this.absoluteSize(DepEtu, menuHorizontal-50, menuVertical/5-50);
         Menu.setLayout(h);
         Menu.add(AddEtu);
         Menu.add(CreeGroup);
