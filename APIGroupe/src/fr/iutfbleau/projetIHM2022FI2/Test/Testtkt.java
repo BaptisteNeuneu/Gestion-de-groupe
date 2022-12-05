@@ -11,5 +11,9 @@ public class Testtkt {
         Etudiant e55=new EtudiantMP("dianne","micaela");
         Etudiant e56=new EtudiantMP("evette","michela");
         Etudiant e57=new EtudiantMP("gisselle","michelangela");
+
+        Groupe g1 = new GroupeMP("test", 0, 25);
+        g1.addEtudiant(e57);
+        g1.addEtudiant(e55);
     }
 }
