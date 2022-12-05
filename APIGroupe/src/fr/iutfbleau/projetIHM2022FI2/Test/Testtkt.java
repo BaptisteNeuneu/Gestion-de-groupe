@@ -15,5 +15,6 @@ public class Testtkt {
         Groupe g1 = new GroupeMP("test", 0, 25);
         g1.addEtudiant(e57);
         g1.addEtudiant(e55);
+        Groupe g2 = new GroupeMP(g1);
     }
 }

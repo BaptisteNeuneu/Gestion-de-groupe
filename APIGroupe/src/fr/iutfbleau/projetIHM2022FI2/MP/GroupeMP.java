@@ -249,7 +249,6 @@ public class GroupeMP implements Groupe {
     public GroupeMP(Groupe pere){
         Objects.requireNonNull(pere,"On ne peut pas créer un groupe dont le père est null");
 
-        this.name=pere.getName()+"_PARTITION_"+ this.id;
         this.min=pere.getMin();
         this.max=pere.getMax();
         this.type=TypeGroupe.PARTITION;
@@ -262,13 +261,20 @@ public class GroupeMP implements Groupe {
 	    	try{
                 Connection con = DriverManager.getConnection("jdbc:mariadb://dwarves.iut-fbleau.fr/fouche","fouche", "fouche");
 				try{
+                    PreparedStatement reqid = con.prepareStatement("select MAX(id) from IHM_Groupe");
+                    ResultSet rs = reqid.executeQuery();
+                    rs.next();
+                    this.id=rs.getInt(1)+1;
+                    System.err.println("crea groupe id:"+id);
 
+                    this.name=pere.getName()+"_PARTITION_"+ this.id;
                     PreparedStatement req2 = con.prepareStatement("SELECT idGroupe,idEtu FROM IHM_Appartenance where idGroupe=? ;");
-					req2.setInt(1,this.id);
+					req2.setInt(1,pere.getId());
 					//System.err.println(req2);
 		    		ResultSet rs2 = req2.executeQuery();
 
                     while (rs2.next()) {
+                        System.err.println("ca tourne :"+rs2.getInt(2));
                         PreparedStatement req3 = con.prepareStatement("INSERT INTO IHM_Appartenance (idGroupe,idEtu) VALUES(?,?);");
 					    req3.setInt(1,this.getId());
 					    req3.setInt(2,rs2.getInt(2));
@@ -277,16 +283,7 @@ public class GroupeMP implements Groupe {
 		    		    req3.executeUpdate();
                             
                     }
-
-
-
-
-                    PreparedStatement reqid = con.prepareStatement("select MAX(id) from IHM_Groupe");
-                    ResultSet rs = reqid.executeQuery();
-                    rs.next();
-                    this.id=rs.getInt(1)+1;
-                    System.err.println("crea groupe id:"+id);
-
+                
                     PreparedStatement req = con.prepareStatement("INSERT INTO IHM_Groupe (id,name,min,max,type,pointpoint) VALUES(?,?,?,?,?,?);");
 					req.setInt(1,this.id);
 					req.setNString(2,this.name);
