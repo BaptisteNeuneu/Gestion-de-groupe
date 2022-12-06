@@ -51,7 +51,7 @@ public class GroupeMP implements Groupe {
                     this.membresDuGroupe=new LinkedHashSet<Etudiant>();
 
                     PreparedStatement req2 = con.prepareStatement("SELECT * FROM IHM_RelationGroupe where idGroupePere=? ;");
-					req.setInt(1,this.id);
+					req2.setInt(1,this.id);
 					//System.err.println(req2);
 		    		ResultSet rs2 = req2.executeQuery();
 
@@ -62,12 +62,12 @@ public class GroupeMP implements Groupe {
                     }
 
                     PreparedStatement req3 = con.prepareStatement("SELECT * FROM IHM_Appartenance where idgroupe=? ;");
-					req.setInt(1,this.id);
+					req3.setInt(1,this.id);
 					//System.err.println(req3);
 		    		ResultSet rs3 = req3.executeQuery();
 
                     while (rs3.next()) {
-                        int idetu = rs3.getInt("idEtu ");
+                        int idetu = rs3.getInt("idEtu");
                         this.membresDuGroupe.add(new EtudiantMP(idetu));     
                     }
 
@@ -436,6 +436,35 @@ public class GroupeMP implements Groupe {
 	    	System.out.println("Erreur de connexion le pilote n'est pas disponible +"+e3);
 		}
         return this.sousGroupes.remove(g);
+    }
+
+    /**
+     * Renome un groupe.
+     */
+    public void Rename(String nouvNom){
+        this.name=nouvNom;
+        try{
+	    	Class.forName("org.mariadb.jdbc.Driver");		
+	    	try{
+                Connection con = DriverManager.getConnection("jdbc:mariadb://dwarves.iut-fbleau.fr/fouche","fouche", "fouche");
+				try{
+                    PreparedStatement req = con.prepareStatement("Update IHM_Groupe set name=? WHERE id=?;");
+					req.setNString(1,nouvNom);
+					req.setInt(2,this.id);
+					//System.err.println(req);
+		    		req.executeUpdate();
+
+		    		con.close();
+				}catch(SQLException e1){
+				    System.out.println("Erreur dans la requete");
+				    con.close();
+				}
+			}catch(SQLException e2){
+				System.out.println("Erreur de connexion le serveur refuse + "+e2);
+	    	}
+		}catch(ClassNotFoundException e3){
+	    	System.out.println("Erreur de connexion le pilote n'est pas disponible +"+e3);
+		}
     }
 
     

@@ -1,21 +1,16 @@
-package fr.iutfbleau.projetIHM2022FI2.MNP;
+package fr.iutfbleau.projetIHM2022FI2.MP;
 import fr.iutfbleau.projetIHM2022FI2.API.*;
 import java.util.*;
 /**
  * Usine abstraite gérant l'ensemble des changements.
  * 
  */
-
 public class AbstractChangementFactoryNP implements AbstractChangementFactory {
-
     // l'usine à groupe travaillant en tandem avec cette usine.
     private AbstractGroupeFactory agf;
-    = DriverManager.getConnection("jdbc:mariadb://dwarves.iut-fbleau.fr/fouche","fouche", "fouche");
-
     // On utilise une table de hachage pour retrouver facilement un changement (à partir de son id).
     // Si il y a beaucoup de changements c'est plus rapide que de parcourir toute une liste.
     private HashMap<Integer,Changement> brain;
-
     public AbstractChangementFactoryNP(AbstractGroupeFactory agf){
         Objects.requireNonNull(agf,"On ne peut pas créer une usine à changement dont l'usine à groupe parternaire est null");
         this.agf=agf;
@@ -42,7 +37,6 @@ public class AbstractChangementFactoryNP implements AbstractChangementFactory {
         Set<Changement> out = new HashSet(this.brain.values());
         return out;
     }
-
     /**
      * permet de mettre en oeuvre un changement connu de l'usine abstraite.
      *
@@ -55,7 +49,6 @@ public class AbstractChangementFactoryNP implements AbstractChangementFactory {
         Etudiant e = c.getEtu();
         Groupe a = c.getA();
         Groupe b = c.getB();
-
         if (!agf.knows(a)) throw new IllegalStateException("Le groupe de départ du changement est inconnu. Impossible à mettre en oeuvre.");
         
         if (!agf.knows(b)) throw new IllegalStateException("Le groupe d'arrivée du changement est inconnu. Impossible à mettre en oeuvre.");
@@ -67,7 +60,6 @@ public class AbstractChangementFactoryNP implements AbstractChangementFactory {
         // En cas de succès, on enlève le changement du cerveau
         this.brain.remove(Integer.valueOf(c.getId()));
     }
-
     
     /**
      * permet de supprimer un changement connu de l'usine abstraite.
@@ -77,11 +69,8 @@ public class AbstractChangementFactoryNP implements AbstractChangementFactory {
      */
     public void deleteChangement(Changement c){
         Objects.requireNonNull(c,"On ne peut pas demander la suppression d'un changement qui est null");
-
         this.brain.remove(Integer.valueOf(c.getId()));
-
     }
-
     /**
      * permet d'ajouter un nouveau changement.
      *
@@ -97,7 +86,6 @@ public class AbstractChangementFactoryNP implements AbstractChangementFactory {
         Objects.requireNonNull(A,"Le groupe d'origine ne peut pas être null");
         Objects.requireNonNull(B,"Le groupe d'arrivée ne peut pas être null");
         Objects.requireNonNull(e,"L'étudiant ne peut pas être null");
-
         Changement c = new ChangementNP(A,e,B);
         this.brain.put(Integer.valueOf(c.getId()),c);   
     }
