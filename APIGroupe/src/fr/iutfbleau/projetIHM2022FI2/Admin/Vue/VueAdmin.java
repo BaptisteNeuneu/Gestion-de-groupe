@@ -4,10 +4,13 @@ package fr.iutfbleau.projetIHM2022FI2.Admin.Vue;
 import javax.swing.*;
 import java.awt.*;
 import fr.iutfbleau.projetIHM2022FI2.Admin.Controleur.*;
+import fr.iutfbleau.projetIHM2022FI2.MNP.*;
+import fr.iutfbleau.projetIHM2022FI2.API.*;
 
 public class VueAdmin {
 
-    public void Vue1() {
+
+    public VueAdmin(AbstractGroupeFactory agf) {
         final int menuHorizontal = 300;
         final int menuVertical = 800;
         final int fenetreHorizontal = 1000;
@@ -48,6 +51,8 @@ public class VueAdmin {
         Menu.add(SupGroup);
         Menu.add(RenGroup);
         Menu.add(DepEtu);
+        JPanel affichage = new JPanel();
+        this.absoluteSize(affichage, fenetreHorizontal - 300,fenetreVertical -300);
         Menu.setBorder(BorderFactory.createLineBorder(Color.black, 1));
         c.gridx = 0;
         c.gridy = 1;
@@ -55,8 +60,7 @@ public class VueAdmin {
         c.ipady =0;
         c.gridwidth = 1;
         WindowsAdmin.add(Menu, c);
-        JPanel affichage = new JPanel();
-        this.absoluteSize(affichage, 700,700);
+
         affichage.setBorder(BorderFactory.createLineBorder(Color.black, 1));
         c.gridx = 1;
         c.gridy = 1;
@@ -64,7 +68,7 @@ public class VueAdmin {
         c.ipady =0;
         affichage.setLayout(j);
         JPanel instru = new JPanel();
-        Pancardlayout l = new Pancardlayout(instru);
+        Pancardlayout l = new Pancardlayout(instru,agf);
         l.adPanel();
         instru.setBorder(BorderFactory.createLineBorder(Color.black, 1));
         affichage.add(instru);
@@ -75,7 +79,7 @@ public class VueAdmin {
         //Pancardlayout l = new Pancardlayout(affichage);
         //l.adPanel();
         //affichage.add(l);
-        ActionMenuAdmin i = new ActionMenuAdmin(AddEtu,CreeGroup,SupGroup,RenGroup,DepEtu,l);
+        ActionMenuAdmin i = new ActionMenuAdmin(AddEtu,CreeGroup,SupGroup,RenGroup,DepEtu,l,agf);
         AddEtu.addActionListener(i);
         CreeGroup.addActionListener(i);
         SupGroup.addActionListener(i);
