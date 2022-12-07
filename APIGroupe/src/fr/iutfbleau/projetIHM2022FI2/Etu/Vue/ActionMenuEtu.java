@@ -30,9 +30,11 @@ public class ActionMenuEtu implements ActionListener{
         if(e.getSource()==this.bouton3){
             this.layout.last(this.panneau);
             this.layout.previous(this.panneau);
+            this.layout.previous(this.panneau);
         }
         if(e.getSource()==this.bouton4){
             this.layout.last(this.panneau);
+            this.layout.previous(this.panneau);
         }
     }
 }

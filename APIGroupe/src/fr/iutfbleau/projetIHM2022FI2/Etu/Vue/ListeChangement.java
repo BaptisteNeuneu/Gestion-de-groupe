@@ -42,7 +42,7 @@ public class ListeChangement{
                 matricule = "NomEtu :";
                 break;
                 case 2:
-                matricule = "PrénomEtu :";
+                matricule = "PrenomEtu :";
                 break;
                 case 3:
                 matricule = "NomGroupeA :";
@@ -71,7 +71,7 @@ public class ListeChangement{
     }
     public void ajoutCorps(){
         final int longueurCorps = 5;
-        ArrayDeque<ChangementNP> liste = this.page.recupTableau2();
+        ArrayDeque<Changement> liste = StaticMethodeEtu.recupTableau2(StaticMethodeEtu.getFactory());
         this.seuil=liste.size();
         int max=0;
         if(this.limite>this.seuil){
@@ -81,7 +81,7 @@ public class ListeChangement{
         }
         for(int i=1;i<=max;i++){
             if(!liste.isEmpty()){
-                ChangementNP changement0 = liste.remove();
+                Changement changement0 = liste.remove();
                 JPanel p = new JPanel();
                 p.setLayout(new GridLayout(1,longueurCorps));
                 for (int j=0;j<longueurCorps;j++){
@@ -142,5 +142,15 @@ public class ListeChangement{
         for(int i=0;i<this.listeBouton.size();i++){
             this.listeBouton.get(i).addActionListener(new ActionListeEtu(this.page.getPremierPanneau().getLayout(),this.page.getPremierPanneau().getPanneau(),this.page.getDif(),this.listeBouton));
         }
+    }
+    public void reafficher(){
+        this.panel2.removeAll();
+        this.ajoutTitre();
+        this.ajoutCorps();
+        this.ajoutLien();
+        this.ajoutEntete();
+        this.panel2.revalidate();
+        this.page.setPanel(this.panel2);
+        this.ajoutListener();
     }
 }

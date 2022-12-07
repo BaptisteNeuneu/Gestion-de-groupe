@@ -72,7 +72,7 @@ public class ListeGroupe{
 
     public void ajoutCorps(){
         final int longueurCorps = 7;
-        ArrayDeque<GroupeNP> liste = this.page.recupTableau0();
+        ArrayDeque<Groupe> liste = StaticMethodeEtu.recupTableau0(StaticMethodeEtu.getFactory());
         this.seuil=liste.size();
         int max=0;
         if(this.limite>this.seuil){
@@ -82,7 +82,7 @@ public class ListeGroupe{
         }
         for(int i=1;i<=max;i++){
             if(!liste.isEmpty()){
-                GroupeNP groupe0 = liste.remove();
+                Groupe groupe0 = liste.remove();
                 JPanel p = new JPanel();
                 p.setLayout(new GridLayout(1,longueurCorps));
                 for (int j=0;j<longueurCorps;j++){

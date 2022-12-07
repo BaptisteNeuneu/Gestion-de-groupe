@@ -42,7 +42,7 @@ public class ListeEtudiant{
                 matricule = "Nom :";
                 break;
                 case 2:
-                matricule = "Prénom :";
+                matricule = "Prenom :";
                 break;
                 case 3:
                 matricule = "Lien :";
@@ -59,7 +59,7 @@ public class ListeEtudiant{
     }
     public void ajoutCorps(){
         final int longueurCorps = 3;
-        ArrayDeque<EtudiantNP> liste = this.page.recupTableau1();
+        ArrayDeque<Etudiant> liste = StaticMethodeEtu.recupTableau1(StaticMethodeEtu.getFactory());
         this.seuil=liste.size();
         int max=0;
         if(this.limite>this.seuil){
@@ -69,7 +69,7 @@ public class ListeEtudiant{
         }
         for(int i=1;i<=max;i++){
             if(!liste.isEmpty()){
-                EtudiantNP etudiant0 = liste.remove();
+                Etudiant etudiant0 = liste.remove();
                 JPanel p = new JPanel();
                 p.setLayout(new GridLayout(1,longueurCorps));
                 for (int j=0;j<longueurCorps;j++){
@@ -99,7 +99,7 @@ public class ListeEtudiant{
         }
     }
     public void ajoutTitre(){
-        String texte="Affichage des étudiants dans un groupe :";
+        String texte="Affichage des etudiants dans un groupe :";
         JLabel titre = new JLabel(texte);
         titre.setFont(new Font(Font.SERIF, Font.PLAIN, 30));
         titre.setBorder(BorderFactory.createLineBorder(Color.BLACK));
