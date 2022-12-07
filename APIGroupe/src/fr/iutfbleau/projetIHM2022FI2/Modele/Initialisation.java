@@ -2,6 +2,7 @@ package fr.iutfbleau.projetIHM2022FI2.Modele;
 
 import fr.iutfbleau.projetIHM2022FI2.MNP.*;
 import fr.iutfbleau.projetIHM2022FI2.API.*;
+import fr.iutfbleau.projetIHM2022FI2.Admin.Vue.*;
 
 public class Initialisation{
 
@@ -122,7 +123,7 @@ public class Initialisation{
         agf.addToGroupe(agf.getPromotion(),e55);
         agf.addToGroupe(agf.getPromotion(),e56);
         agf.addToGroupe(agf.getPromotion(),e57);
-
+        new VueAdmin(agf);
     }
 
     
