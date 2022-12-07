@@ -441,7 +441,7 @@ public class GroupeMP implements Groupe {
     /**
      * Renome un groupe.
      */
-    public void Rename(String nouvNom){
+    public void setName(String nouvNom){
         this.name=nouvNom;
         try{
 	    	Class.forName("org.mariadb.jdbc.Driver");		
