@@ -44,7 +44,17 @@ public class DemandeEtu {
         StaticMethodeEtu.absoluteSize(nomPrenom,this.longueurFixe*2,this.hauteurFixe/2);
         this.page.layoutOptions(3, 4, 2, 1, GridBagConstraints.NONE, GridBagConstraints.NORTH, 0.0, 0.0,new Insets(0, 0, 0, 0));
         this.panel.add(nomPrenom,this.gbc);
+        
+        JLabel explicationEcrit= new JLabel("Explication :");
+        StaticMethodeEtu.absoluteSize(explicationEcrit,this.longueurFixe*2,this.hauteurFixe/2);
+        this.page.layoutOptions(3, 5, 2, 1, GridBagConstraints.NONE, GridBagConstraints.SOUTH, 0.0, 0.0,new Insets(0, 0, 0, 0));
+        this.panel.add(explicationEcrit,this.gbc);
 
+        JTextArea explication= new JTextArea();
+        JScrollPane scroll= new JScrollPane(explication);
+        StaticMethodeEtu.absoluteSize(scroll,this.longueurFixe*2,this.hauteurFixe*2);
+        this.page.layoutOptions(3, 6, 2, 2, GridBagConstraints.NONE, GridBagConstraints.NORTH, 0.0, 0.0,new Insets(0, 0, 0, 0));
+        this.panel.add(scroll,this.gbc);
 
         JLabel AEcrit= new JLabel("Groupe de depart :");
         StaticMethodeEtu.absoluteSize(AEcrit,this.longueurFixe*2,this.hauteurFixe/2);
@@ -75,28 +85,30 @@ public class DemandeEtu {
                 }
             }
         }
-        ActionDemandeEtu choix = new ActionDemandeEtu(this.page.getPremierPanneau().getLayout(),this.page.getPremierPanneau().getPanneau(),this.page.getDif(),valider,nomPrenom,A,B,this.liste);
+        ActionDemandeEtu choix = new ActionDemandeEtu(this.page.getPremierPanneau().getLayout(),this.page.getPremierPanneau().getPanneau(),this.page.getDif(),valider,nomPrenom,A,B,explication,this.liste);
         nomPrenom.addActionListener(choix);
         A.addActionListener(choix);
         B.addActionListener(choix);
         valider.addActionListener(choix);
-    }
+}
 
     public String[] transformTabGroupe(){
         ArrayDeque<Groupe> file = StaticMethodeEtu.recupTableau0(StaticMethodeEtu.getFactory());
-        String[] tab = new String[file.size()];
-        for(int i=0;i<tab.length;i++){
-            tab[i]=file.remove().getName();
+        String[] tab = new String[file.size()+1];
+        tab[0]=null;
+        for(int i=0;!file.isEmpty();i++){
+            tab[i+1]=file.remove().getName();
         }
         return tab;
     }
 
     public String[] transformTabEtudiantNom(){
         ArrayDeque<Etudiant> file = StaticMethodeEtu.recupTableau1(StaticMethodeEtu.getFactory());
-        String[] tab = new String[file.size()];
-        for(int i=0;i<tab.length;i++){
+        String[] tab = new String[file.size()+1];
+        tab[0]=null;
+        for(int i=0;!file.isEmpty();i++){
             Etudiant etu=file.remove();
-            tab[i]=etu.getPrenom()+" "+etu.getNom();
+            tab[i+1]=etu.getPrenom()+" "+etu.getNom();
         }
         return tab;
     }

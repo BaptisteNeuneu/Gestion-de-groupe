@@ -8,18 +8,20 @@ import java.awt.event.*;
 import java.util.*;
 
 public class ActionDemandeEtu implements ActionListener{
-    CardLayout layout;
-    JPanel panneau;
-    int dif;
-    JButton valider;
-    JComboBox box1;
-    JComboBox box2;
-    JComboBox box3;
-    String etu;
-    String A;
-    String B;
-    ListeChangement liste;
-    public ActionDemandeEtu(CardLayout l,JPanel p,int d,JButton v,JComboBox b1,JComboBox b2,JComboBox b3,ListeChangement t){
+    private CardLayout layout;
+    private JPanel panneau;
+    private int dif;
+    private JButton valider;
+    private JComboBox box1;
+    private JComboBox box2;
+    private JComboBox box3;
+    private JTextArea explication;
+    private String etu;
+    private String exp;
+    private String A;
+    private String B;
+    private ListeChangement liste;
+    public ActionDemandeEtu(CardLayout l,JPanel p,int d,JButton v,JComboBox b1,JComboBox b2,JComboBox b3,JTextArea ex, ListeChangement t){
         this.liste=t;
         this.layout=l;
         this.panneau=p;
@@ -28,6 +30,7 @@ public class ActionDemandeEtu implements ActionListener{
         this.box1=b1;
         this.box2=b2;
         this.box3=b3;
+        this.explication=ex;
     }
     public ActionDemandeEtu(CardLayout l,JPanel p,int d,JButton v){
         this.layout=l;
@@ -60,9 +63,11 @@ public class ActionDemandeEtu implements ActionListener{
         }
     }
     public void cas0(ActionEvent e){
+        this.exp=this.explication.getText();
         System.out.println(this.etu);
         System.out.println(this.A);
         System.out.println(this.B);
+        System.out.println(this.exp);
 
         Set<Etudiant> setter =StaticMethodeEtu.getFactory().getGroupeFactory().getEtudiants(this.etu);
         Etudiant etudiant=null;
@@ -85,7 +90,7 @@ public class ActionDemandeEtu implements ActionListener{
         }
         System.out.println(gA.getName());
         System.out.println(gB.getName());
-        StaticMethodeEtu.getFactory().createChangement(gA,etudiant,gB);
+        StaticMethodeEtu.getFactory().createChangement(gA,etudiant,gB,this.exp);
         this.liste.reafficher();
         this.layout.last(this.panneau);
 
@@ -105,5 +110,8 @@ public class ActionDemandeEtu implements ActionListener{
     }
     public void cas4(ActionEvent e){
         this.B=this.box3.getSelectedItem().toString();
+    }
+    public void cas5(ActionEvent e){
+        this.exp=this.explication.getSelectedText();
     }
 }

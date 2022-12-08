@@ -29,7 +29,7 @@ public class ListeChangement{
         this.ajoutListener();
     }
     public void ajoutEntete(){
-        final int longueurEntete = 8;
+        final int longueurEntete = 9;
         JPanel p = new JPanel();
         p.setLayout(new GridLayout(1,longueurEntete));
         for (int j=0;j<longueurEntete;j++){
@@ -51,12 +51,15 @@ public class ListeChangement{
                 matricule = "NomGroupeB :";
                 break;
                 case 5:
-                matricule = "Lien Etudiant:";
+                matricule = "Explication :";
                 break;
                 case 6:
-                matricule = "Lien GroupeA:";
+                matricule = "Lien Etudiant:";
                 break;
                 case 7:
+                matricule = "Lien GroupeA:";
+                break;
+                case 8:
                 matricule = "Lien GroupeB:";
                 break;
             }
@@ -70,7 +73,7 @@ public class ListeChangement{
         this.panel2.add(p,this.page.getGbc());
     }
     public void ajoutCorps(){
-        final int longueurCorps = 5;
+        final int longueurCorps = 6;
         ArrayDeque<Changement> liste = StaticMethodeEtu.recupTableau2(StaticMethodeEtu.getFactory());
         this.seuil=liste.size();
         int max=0;
@@ -81,6 +84,9 @@ public class ListeChangement{
         }
         for(int i=1;i<=max;i++){
             if(!liste.isEmpty()){
+                JLabel champ;
+                JTextArea zone;
+                JScrollPane scroll;
                 Changement changement0 = liste.remove();
                 JPanel p = new JPanel();
                 p.setLayout(new GridLayout(1,longueurCorps));
@@ -102,11 +108,23 @@ public class ListeChangement{
                         case 4:
                         matricule = changement0.getB().getName();
                         break;
+                        case 5:
+                        matricule = changement0.getExplication();
+                        break;
                     }
-                    JLabel champ = new JLabel (matricule);
-                    champ.setFont(new Font(Font.SERIF, Font.PLAIN, 20));
-                    champ.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-                    p.add(champ);
+                    if(j==5){
+                        zone = new JTextArea(matricule);
+                        zone.setEnabled(false);
+                        scroll = new JScrollPane(zone);
+                        scroll.setFont(new Font(Font.SERIF, Font.PLAIN, 20));
+                        scroll.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                        p.add(scroll);
+                    }else{
+                        champ = new JLabel (matricule);
+                        champ.setFont(new Font(Font.SERIF, Font.PLAIN, 20));
+                        champ.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+                        p.add(champ);
+                    }
                 }
                 StaticMethodeEtu.absoluteSize(p,longueurFixe*longueurCorps,hauteurFixe);
                 this.page.layoutOptions(0, i+1, longueurCorps, 1, GridBagConstraints.NONE, GridBagConstraints.CENTER, 0.0, 0.0, new Insets(0, 0, 0, 0));
@@ -145,7 +163,7 @@ public class ListeChangement{
                 lien.setFont(new Font(Font.SERIF, Font.PLAIN, 30));
                 lien.setBorder(BorderFactory.createLineBorder(Color.BLACK));
                 StaticMethodeEtu.absoluteSize(lien,this.longueurFixe,this.hauteurFixe);
-                this.page.layoutOptions(j+5, i+1, 1, 1, GridBagConstraints.NONE, GridBagConstraints.CENTER, 0.0, 0.0, new Insets(0, 0, 0, 0));
+                this.page.layoutOptions(j+6, i+1, 1, 1, GridBagConstraints.NONE, GridBagConstraints.CENTER, 0.0, 0.0, new Insets(0, 0, 0, 0));
                 this.panel2.add(lien,this.page.getGbc());
                 this.listeBouton.add(lien);
             }
