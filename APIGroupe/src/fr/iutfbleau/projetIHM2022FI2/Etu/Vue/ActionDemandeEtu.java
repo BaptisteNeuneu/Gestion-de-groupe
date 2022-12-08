@@ -12,16 +12,16 @@ public class ActionDemandeEtu implements ActionListener{
     private JPanel panneau;
     private int dif;
     private JButton valider;
-    private JComboBox box1;
-    private JComboBox box2;
-    private JComboBox box3;
+    private JComboBox<String>  box1;
+    private JComboBox<String>  box2;
+    private JComboBox<String>  box3;
     private JTextArea explication;
     private String etu;
     private String exp;
     private String A;
     private String B;
     private ListeChangement liste;
-    public ActionDemandeEtu(CardLayout l,JPanel p,int d,JButton v,JComboBox b1,JComboBox b2,JComboBox b3,JTextArea ex, ListeChangement t){
+    public ActionDemandeEtu(CardLayout l,JPanel p,int d,JButton v,JComboBox<String> b1,JComboBox<String>  b2,JComboBox<String>  b3,JTextArea ex, ListeChangement t){
         this.liste=t;
         this.layout=l;
         this.panneau=p;

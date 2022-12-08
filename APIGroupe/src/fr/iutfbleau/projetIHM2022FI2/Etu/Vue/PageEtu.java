@@ -67,7 +67,7 @@ public class PageEtu{
     public void creerVide(int x, int y) {
         JPanel espace = new JPanel();
         espace.setPreferredSize(new Dimension(this.longueurFixe/11,this.hauteurFixe/11));
-        espace.setBackground(Color.BLACK);
+        espace.setBackground(Color.GRAY);
         this.layoutOptions(x, y, 1, 1, GridBagConstraints.NONE, GridBagConstraints.CENTER, 0.0, 0.0,new Insets(0, 0, 0, 0));
         this.panel.add(espace, this.gbc);
     }
