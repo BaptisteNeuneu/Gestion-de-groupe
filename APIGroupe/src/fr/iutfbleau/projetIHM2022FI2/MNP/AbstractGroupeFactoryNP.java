@@ -228,5 +228,11 @@ public class AbstractGroupeFactoryNP implements AbstractGroupeFactory {
         }
         return out;
     }
+
+    public Groupe getGroupeByName(String name){
+        Set<Groupe> out = new LinkedHashSet<Groupe>();
+        
+        return a;
+    }
     
 }

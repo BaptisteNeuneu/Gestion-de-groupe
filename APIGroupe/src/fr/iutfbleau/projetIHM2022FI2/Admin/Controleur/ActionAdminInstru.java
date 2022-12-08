@@ -10,15 +10,15 @@ import fr.iutfbleau.projetIHM2022FI2.MP.*;
 
 
 public class ActionAdminInstru implements ActionListener {
-
+   Etudiant b;
    AbstractGroupeFactory gestiongroupe;
    AbstractChangementFactory gestionchangement;
-   String nometudiant, sousgroupe, newgroupe;
+   String nometudiant, groupeactuel, newgroupeorgroupename;
    JButton valaddetu,valcreegroup,valsupgroup,valrengroup,valdepetu;
    public ActionAdminInstru(JLabel nom,JLabel sous,JLabel newg,JButton valaddetu,JButton valcreegroup,JButton valsupgroup,JButton valrengroup,JButton valdepetu,AbstractGroupeFactory gestiongroupe){
     this.nometudiant = nom.getText();
-    this.sousgroupe = sous.getText();
-    this.newgroupe = newg.getText();
+    this.groupeactuel = sous.getText();
+    this.newgroupeorgroupename = newg.getText();
     this.valaddetu = valaddetu;
     this.valcreegroup = valcreegroup;
     this.valsupgroup = valsupgroup;
@@ -33,7 +33,7 @@ public class ActionAdminInstru implements ActionListener {
       Set<Etudiant> listeetu = gestiongroupe.getEtudiants(nometudiant);
       for(Etudiant a : gestiongroupe.getPromotion().getEtudiants()){
          if(a.getNom() == nometudiant){
-            break;
+            Etudiant b = a;
          }
       }
 
@@ -41,15 +41,15 @@ public class ActionAdminInstru implements ActionListener {
       
 
       if(e.getSource() == valaddetu){
-         gestiongroupe.addToGroupe(pere,a);
+         gestiongroupe.addToGroupe(pere,b);
       }
 
       if(e.getSource() == valcreegroup){
-         gestiongroupe.createGroupe(pere,newgroupe,15,60);
+         gestiongroupe.createGroupe(pere,newgroupeorgroupename,15,60);
       }
 
       if(e.getSource() == valrengroup){
-         gestiongroupe.
+         pere.setName(newgroupeorgroupename);
       }
 
       if(e.getSource() == valsupgroup){
