@@ -1,6 +1,6 @@
 package fr.iutfbleau.projetIHM2022FI2.Modele;
 
-import fr.iutfbleau.projetIHM2022FI2.MNP.*;
+import fr.iutfbleau.projetIHM2022FI2.MP.*;
 import fr.iutfbleau.projetIHM2022FI2.API.*;
 import fr.iutfbleau.projetIHM2022FI2.Admin.Vue.*;
 

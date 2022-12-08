@@ -3,7 +3,7 @@ package fr.iutfbleau.projetIHM2022FI2.Admin.Vue;
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-import fr.iutfbleau.projetIHM2022FI2.MNP.*;
+
 import fr.iutfbleau.projetIHM2022FI2.API.*;
 import fr.iutfbleau.projetIHM2022FI2.Admin.Controleur.ActionAdminInstru;
 import fr.iutfbleau.projetIHM2022FI2.MP.*;

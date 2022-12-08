@@ -8,7 +8,7 @@ import javax.swing.event.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 
-import fr.iutfbleau.projetIHM2022FI2.MNP.*;
+
 import fr.iutfbleau.projetIHM2022FI2.API.*;
 import fr.iutfbleau.projetIHM2022FI2.MP.*;
 

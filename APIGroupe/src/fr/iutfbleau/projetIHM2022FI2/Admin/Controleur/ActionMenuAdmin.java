@@ -2,7 +2,7 @@ package fr.iutfbleau.projetIHM2022FI2.Admin.Controleur;
 
 import java.awt.event.*;
 import javax.swing.*;
-import fr.iutfbleau.projetIHM2022FI2.MNP.*;
+
 import fr.iutfbleau.projetIHM2022FI2.API.*;
 
 import fr.iutfbleau.projetIHM2022FI2.MP.*;
