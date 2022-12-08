@@ -3,7 +3,7 @@ import fr.iutfbleau.projetIHM2022FI2.API.*;
 import java.util.*;
 import java.sql.*;
 /**
- * Un étudiant
+ * créer un étudiant via base de données
  */
 
 public class EtudiantMP implements Etudiant{
@@ -13,7 +13,10 @@ public class EtudiantMP implements Etudiant{
 
     /**
      * Constructeur + insert dans la base de donnée.
-     */
+     * @param nom nom de l'etudiant
+     * @param prenom prenom de l'etudiant
+     * 
+*/
     public EtudiantMP(String nom, String prenom){
         Objects.requireNonNull(nom,"On ne peut pas créer un étudiant avec un nom null");
         Objects.requireNonNull(prenom,"On ne peut pas créer un étudiant avec un prenom null");
@@ -53,7 +56,9 @@ public class EtudiantMP implements Etudiant{
 
     /**
      * Constructeur via base de données.
-     */
+     * @param id id de l'etudiant
+     * 
+*/
     public EtudiantMP(int id){
         Objects.requireNonNull(id,"On ne peut pas créer un étudiant avec un id null");
         // auto incrément de l'id
@@ -86,6 +91,7 @@ public class EtudiantMP implements Etudiant{
 
      /**
      *Initialisation des etudiant via base de donnée.
+     pas utilisé.
      */
     public static Set<Etudiant> InitEtu(Set<Etudiant> listeEtu){
         try{

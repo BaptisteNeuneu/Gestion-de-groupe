@@ -2,7 +2,7 @@ package fr.iutfbleau.projetIHM2022FI2.MP;
 import fr.iutfbleau.projetIHM2022FI2.API.*;
 import java.util.*;
 /**
- * Usine abstraite gérant l'ensemble des groupes.
+ * Usine abstraite gérant l'ensemble des groupes via base de données.
  * 
  */
 
@@ -21,6 +21,9 @@ public class AbstractGroupeFactoryMP implements AbstractGroupeFactory {
     /**
      * Le constructeur fabrique le groupe promotion vide.
      * Il faut ensuite y ajouter les étudiants.
+     * @param name nom de l'usine
+     * @param min min de l'usine
+     * @param max max de l'usine
      */
     public AbstractGroupeFactoryMP(String name, int min, int max){
         Objects.requireNonNull(name,"On ne peut pas créer une promotion dont le nom est null");
@@ -31,6 +34,8 @@ public class AbstractGroupeFactoryMP implements AbstractGroupeFactory {
     
     /**
      * Test plutôt optimiste. Si la clé est identique alors on fait comme si c'était le bon groupe.
+     * @param max groupe a tester
+     * @return true si l'usine connais le groupe false sinon
      */
     public Boolean knows(Groupe g){
         return this.brain.containsKey(Integer.valueOf(g.getId()));
@@ -53,6 +58,7 @@ public class AbstractGroupeFactoryMP implements AbstractGroupeFactory {
      * permet de supprimer un groupe connu de l'usine abstraite qui ne contient pas de groupes.
      * Pour détruire un groupe connu qui en contient d'autres il faut le faire récursivement.
      *
+     * @param g groupe a supprimer
      * @throws java.lang.NullPointerException si un argument est null
      * @throws java.lang.IllegalStateException si le groupe contient des groupes
      * @throws java.lang.IllegalArgumentException si le groupe n'est pas connu de l'usine abstraite ou bien si le groupe est celui de toute la promotion (renvoyé par getPromotion)

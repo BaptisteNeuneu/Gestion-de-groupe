@@ -3,7 +3,7 @@ import fr.iutfbleau.projetIHM2022FI2.API.*;
 import java.util.*;
 import java.sql.*;
 /**
- * Un groupe
+ * créer un groupe via base de données
  */
 
 public class GroupeMP implements Groupe {
@@ -22,7 +22,10 @@ public class GroupeMP implements Groupe {
 
 
     /**
-     * insertion via base de donnée groupe de type ROOT
+     * Ajout d'un groupe ROOT via BD.
+     *
+     * @param A id du goupe a creer 
+     * 
      */
     public GroupeMP(int id){
         try{
@@ -87,6 +90,10 @@ public class GroupeMP implements Groupe {
 
     /**
      * insertion via base de donnée groupe de type non ROOT
+     *
+     * @param id id du groupe
+     * @param pere id groupe pere
+     * 
      */
     public GroupeMP(int id,GroupeMP pere){
         try{
@@ -147,9 +154,15 @@ public class GroupeMP implements Groupe {
 		}
     }
 
-    /**
-     * Nouveau groupe vide de type ROOT sans étudiants, sans sous-Groupe
-     */
+
+/**
+     * Nouveau groupe vide de type ROOT sans étudiants, sans sous-Groupe.
+     *
+     * @param name nom du groupe
+     * @param min nombre minimal d'etudiant
+     * @param max nombre maximal d'etudiant
+     * 
+*/
     public GroupeMP(String name, int min, int max){
         Objects.requireNonNull(name,"On ne peut pas créer un groupe dont le nom est null");
         this.name=name;
@@ -194,9 +207,15 @@ public class GroupeMP implements Groupe {
 		}
     }
     
-    /**
+/**
      * Nouveau groupe vide de type FREE sans étudiants, sans sous-Groupe
-     */
+     *
+     * @param pere groupe pere
+     * @param name nom du groupe
+     * @param min nombre minimal d'etudiant
+     * @param max nombre maximal d'etudiant
+     * 
+*/
     public GroupeMP(Groupe pere, String name, int min, int max){
         Objects.requireNonNull(pere,"On ne peut pas créer un groupe dont le père est null");
         Objects.requireNonNull(name,"On ne peut pas créer un groupe dont le nom est null");
@@ -242,10 +261,12 @@ public class GroupeMP implements Groupe {
 		}
     }
 
-    /**
+/**
      * Nouveau groupe de type PARTITION dupliquant le groupe passé en paramètre (pour servir de racine à une partition de ce groupe de type FREE passé en paramètre).
+     *
+     * @param pere groupe pere
      * 
-     */
+*/
     public GroupeMP(Groupe pere){
         Objects.requireNonNull(pere,"On ne peut pas créer un groupe dont le père est null");
 
@@ -307,11 +328,14 @@ public class GroupeMP implements Groupe {
 		}
     }
     
-    /**
-     * Ajoute un étudiant. Se comporte comme add de l'interface Set.
+
+/**
+     * permet d'ajouter un nouveau changement.
      *
-     * @return true iff e est ajouté
-     */
+     * @param e Etudiant a ajouter
+     * @return renvoie true si l'ajout c'est bien passé false sinon
+     * 
+*/
     public boolean addEtudiant(Etudiant e){
         Objects.requireNonNull(e,"On ne peut pas ajouter un Étudiant qui est null");
         try{
@@ -340,10 +364,12 @@ public class GroupeMP implements Groupe {
     }
 
     /**
-     * Enlève un étudiant. Se comporte comme remove de l'interface Set.
+     * permet d'enlever un nouveau changement.
      *
-     * @return true iff e est enlevé
-     */
+     * @param e Etudiant a enlever
+     * @return renvoie true si la supression c'est bien passé false sinon
+     * 
+*/
     public boolean removeEtudiant(Etudiant e){
         Objects.requireNonNull(e,"On ne peut pas enlever un Étudiant qui est null");
         try{
@@ -372,11 +398,12 @@ public class GroupeMP implements Groupe {
     }
 
     /**
-     * Ajoute un sous-groupe. Se comporte comme add de l'interface Set.
-     * vérifie que le groupe passé en argument a bien renseigné this comme son père.
+     * permet d'ajouter un nouveau sous groupe.
      *
-     * @return true iff g est ajouté
-     */
+     * @param g groupe a ajouter
+     * @return renvoie true si l'ajout c'est bien passé false sinon
+     * 
+*/
      public boolean addSousGroupe(Groupe g){
         Objects.requireNonNull(g,"On ne peut pas ajouter un sous-groupe qui est null");
         if (this.equals(g.getPointPoint())){
@@ -407,10 +434,12 @@ public class GroupeMP implements Groupe {
     }
 
     /**
-     * Enlève un groupe. Se comporte comme remove de l'interface Set.
+     * permet d'enlever un nouveau sous groupe.
      *
-     * @return true iff e est enlevé
-     */
+     * @param g Etudiant a enlever
+     * @return renvoie true si la supression c'est bien passé false sinon
+     * 
+*/
     public boolean removeSousGroupe(Groupe g){
         Objects.requireNonNull(g,"On ne peut pas enlever un Étudiant qui est null");
         try{
@@ -439,8 +468,11 @@ public class GroupeMP implements Groupe {
     }
 
     /**
-     * Renome un groupe.
-     */
+     * permet de renomer un groupe.
+     *
+     * @param nouvNom nouveau nom du Groupe
+     * 
+*/
     public void setName(String nouvNom){
         this.name=nouvNom;
         try{

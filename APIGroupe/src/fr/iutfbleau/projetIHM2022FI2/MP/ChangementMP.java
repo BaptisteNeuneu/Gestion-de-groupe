@@ -6,7 +6,7 @@ import java.sql.*;
  * Une demande de changement de groupe
  * concerne un étudiant, qui est dans un groupe A et veut aller dans un groupe B.
  * 
- * Implémentation non persistante fournie avec l'API.
+ * Implémentation persistante.
  */
 
 public class ChangementMP implements Changement {
@@ -15,6 +15,14 @@ public class ChangementMP implements Changement {
     private Groupe a,b;
     private Etudiant e;
 
+    /**
+     * permet d'ajouter un nouveau changement.
+     *
+     * @param a groupe actuel
+     * @param b groupe futur
+     * @param e Etudiant
+     * 
+*/
     public ChangementMP(Groupe a, Etudiant e, Groupe b){
         Objects.requireNonNull(a,"On ne peut pas créer un changement avec un groupe à quitter null");
         Objects.requireNonNull(b,"On ne peut pas créer un changement avec un groupe à rejoindre null");
