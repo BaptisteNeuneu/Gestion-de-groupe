@@ -83,8 +83,8 @@ public class ActionDemandeEtu implements ActionListener{
                 gB = temp;
             }
         }
-        System.out.println(gA);
-        System.out.println(gB);
+        System.out.println(gA.getName());
+        System.out.println(gB.getName());
         StaticMethodeEtu.getFactory().createChangement(gA,etudiant,gB);
         this.liste.reafficher();
         this.layout.last(this.panneau);

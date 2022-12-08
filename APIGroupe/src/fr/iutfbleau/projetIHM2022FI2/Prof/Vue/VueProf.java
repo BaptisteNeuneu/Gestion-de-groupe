@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class VueProf {
-        public void Vue3() {
+        public void Vue2() {
                 final int menuHorizontal = 300;
                 final int menuVertical = 800;
                 final int fenetreHorizontal = 1500;
@@ -16,7 +16,7 @@ public class VueProf {
                 c.fill = GridBagConstraints.VERTICAL;
                 JButton AffGroup = new JButton("Afficher groupes");
                 JButton AffEtu = new JButton("afficher etudiant");
-                JButton Chang = new JButton("faire changement groupe");
+                JButton Recherche = new JButton("afficher recherche");
                 JPanel Titre = new JPanel();
                 // Titre.setLayout(new BorderLayout());
                 JLabel titre = new JLabel("Etudiant");
@@ -26,7 +26,7 @@ public class VueProf {
                 StaticMethodeProf.absoluteSize(Menu, menuHorizontal, menuVertical);
                 StaticMethodeProf.absoluteSize(AffGroup, menuHorizontal, menuVertical / 3);
                 StaticMethodeProf.absoluteSize(AffEtu, menuHorizontal, menuVertical / 3);
-                StaticMethodeProf.absoluteSize(Chang, menuHorizontal, menuVertical / 3);
+                StaticMethodeProf.absoluteSize(Recherche, menuHorizontal, menuVertical / 3);
                 Menu.setLayout(new GridLayout(3, 1));
                 // System.out.println(Menu);
                 JPanel affichage = p.getPanneau();
@@ -55,13 +55,13 @@ public class VueProf {
                 WindowsAdmin.add(affichage, c);
                 Menu.add(AffGroup);
                 Menu.add(AffEtu);
-                Menu.add(Chang);
-                ActionMenuProf act = new ActionMenuProf(p.getLayout(), AffGroup, AffEtu, Chang, affichage);
+                Menu.add(Recherche);
+                ActionMenuProf act = new ActionMenuProf(p.getLayout(), AffGroup, AffEtu, Recherche, affichage,p);
                 WindowsAdmin.setVisible(true);
                 WindowsAdmin.setResizable(false);
                 WindowsAdmin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 AffGroup.addActionListener(act);
                 AffEtu.addActionListener(act);
-                Chang.addActionListener(act);
+                Recherche.addActionListener(act);
         }
 }

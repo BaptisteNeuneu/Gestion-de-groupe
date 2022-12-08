@@ -59,7 +59,7 @@ public class VueEtu {
                 Menu.add(AffEtu);
                 Menu.add(AffChang);
                 Menu.add(Chang);
-                ActionMenuEtu act = new ActionMenuEtu(p.getLayout(), AffGroup, AffEtu, AffChang, Chang, affichage);
+                ActionMenuEtu act = new ActionMenuEtu(p.getLayout(), AffGroup, AffEtu, AffChang, Chang, affichage,p);
                 WindowsAdmin.setVisible(true);
                 WindowsAdmin.setResizable(false);
                 WindowsAdmin.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
