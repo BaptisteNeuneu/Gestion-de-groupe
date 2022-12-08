@@ -67,8 +67,7 @@ public static Connection getCon() throws SQLException{
 	    	System.out.println("Erreur de connexion le pilote n'est pas disponible");
 		}
     }
-<<<<<<< HEAD
-=======
+
 	public static void insertGroupe(){
 		try{
 	    	Class.forName("org.mariadb.jdbc.Driver");		
@@ -197,5 +196,5 @@ public static Connection getCon() throws SQLException{
 	    	System.out.println("Erreur de connexion le pilote n'est pas disponible");
 		}
     }
->>>>>>> master
+
 }

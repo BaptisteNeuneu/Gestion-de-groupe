@@ -197,7 +197,7 @@ public class TestTexteMNP{
         Groupe B = itgr.next(); // second sous-groupe
         B = itgr.next(); // troisieme sous-groupe
         Etudiant e = A.getEtudiants().iterator().next();// premier etudiant du premier sous-groupe.
-        this.acf.createChangement(A,e,B);
+        this.acf.createChangement(A,e,B,"flemme");
         System.out.println("Recuperation des changements (en fait un seul pour l'instant)");
         Iterator<Changement> itch = this.acf.getAllChangements().iterator();
         Changement c = itch.next();
@@ -217,8 +217,8 @@ public class TestTexteMNP{
         B = itgr.next(); // second sous-groupe
         Etudiant etu1 = A.getEtudiants().iterator().next();// premier etudiant du premier sous-groupe.
         Etudiant etu2 = B.getEtudiants().iterator().next();// premier etudiant du premier sous-groupe.
-        this.acf.createChangement(A,etu1,B);
-        this.acf.createChangement(B,etu2,A);
+        this.acf.createChangement(A,etu1,B,"parce que envie");
+        this.acf.createChangement(B,etu2,A,"svp monsieur");
         // Impression des changements.
         for (Changement cgt : this.acf.getAllChangements()){
             System.out.println(cgt.monPrint());

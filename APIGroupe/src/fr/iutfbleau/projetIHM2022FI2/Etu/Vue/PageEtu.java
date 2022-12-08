@@ -85,7 +85,7 @@ public class PageEtu{
     }
     public void listeChangement(){
         this.liste3 = new ListeChangement();
-        this.liste3.ajouter(this,this.longueurFixe/8,this.hauteurFixe/11);
+        this.liste3.ajouter(this,this.longueurFixe/9,this.hauteurFixe/11);
     }
     public void changement(){
         DemandeEtu demande = new DemandeEtu(this,this.longueurFixe/11,this.hauteurFixe/11,this.getPremierPanneau().getP(2).getListe3());

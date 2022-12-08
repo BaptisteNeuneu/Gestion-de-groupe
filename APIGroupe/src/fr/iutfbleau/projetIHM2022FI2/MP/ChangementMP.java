@@ -6,7 +6,7 @@ import java.sql.*;
  * Une demande de changement de groupe
  * concerne un étudiant, qui est dans un groupe A et veut aller dans un groupe B.
  * 
- * Implémentation non persistante fournie avec l'API.
+ * Implémentation persistante.
  */
 
 public class ChangementMP implements Changement {
@@ -14,15 +14,18 @@ public class ChangementMP implements Changement {
     private int id;
     private Groupe a,b;
     private Etudiant e;
+    private String ex;
 
-    public ChangementMP(Groupe a, Etudiant e, Groupe b){
+    public ChangementMP(Groupe a, Etudiant e, Groupe b,String ex){
         Objects.requireNonNull(a,"On ne peut pas créer un changement avec un groupe à quitter null");
         Objects.requireNonNull(b,"On ne peut pas créer un changement avec un groupe à rejoindre null");
         Objects.requireNonNull(e,"On ne peut pas créer un changement concernant un étudiant null");
+        Objects.requireNonNull(ex,"On ne peut pas créer un changement concernant une explication null");
 
         this.a=a;
         this.b=b;
         this.e=e;
+        this.ex=ex;
 
         try{
 	    	Class.forName("org.mariadb.jdbc.Driver");		
@@ -37,12 +40,12 @@ public class ChangementMP implements Changement {
                     System.err.println("crea changement id:"+id);
                     
                 
-                    PreparedStatement req = con.prepareStatement("INSERT INTO IHM_Changement (id,A,B,Etu) VALUES(?,?,?,?);");
+                    PreparedStatement req = con.prepareStatement("INSERT INTO IHM_Changement (id,A,B,Etu,explication) VALUES(?,?,?,?,?);");
 					req.setInt(1,this.id);
                     req.setInt(2,this.a.getId());
                     req.setInt(3,this.b.getId());
                     req.setInt(4,this.e.getId());
-
+                    req.setNString(5,this.ex);
 					//System.err.println(req);
 		    		req.executeUpdate();
 
@@ -84,7 +87,7 @@ public class ChangementMP implements Changement {
         return this.b;
     }
     public String getExplication(){
-        return "pas fini en fait";
+        return this.ex;
     }
 
     /**
