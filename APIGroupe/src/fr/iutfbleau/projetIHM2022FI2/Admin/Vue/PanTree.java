@@ -14,19 +14,28 @@ import fr.iutfbleau.projetIHM2022FI2.MP.*;
 
 public class PanTree implements TreeSelectionListener {
 
-    private JScrollPane affgroup;
+    private JPanel affgroup;
     private Groupe pere;
     private String nompere;
     private String nomfils;
     private Set<Groupe> allgroupe;
     AbstractGroupeFactory agf;
     String sousgroupe;
-
-    public PanTree(JScrollPane affgroup,AbstractGroupeFactory agf){
+    /**
+     * Cree pan tree qui recupere
+     * le gestionnaire de groupe et le panneau qui va le contenir
+     * @param affgroup
+     * @param agf
+     */
+    public PanTree(JPanel affgroup,AbstractGroupeFactory agf){
         this.affgroup = affgroup;
         this.agf = agf;
     }
 
+    /**
+     * Initialise le jtree
+     * @return
+     */
     public JTree baseJTree(){
         pere = agf.getPromotion();
         nompere = pere.getName();
@@ -37,7 +46,11 @@ public class PanTree implements TreeSelectionListener {
 
     }
 
-
+    /**
+     * cree toute les branches du jtree
+     * @param pere
+     * @param racine
+     */
     public void addJtree(Groupe pere,DefaultMutableTreeNode racine){
         allgroupe = pere.getSousGroupes();
         for(Groupe fils : allgroupe){
@@ -52,14 +65,21 @@ public class PanTree implements TreeSelectionListener {
         }
     }
 
-
-    public void AffJTree(JScrollPane affgroup){
+    /**
+     * ajoute le jtree au panneau et l'initialise
+     * @param affgroup
+     */
+    public void AffJTree(JPanel affgroup){
         JTree a =this.baseJTree();
         affgroup.add(a);
     }
-
-    public void refreshTree(){
-
+    /**
+     * met à jour le jtree
+     * @param a
+     */
+    public void refreshTree(JTree a){
+        a.updateUI();
+        affgroup.add(a);
     }
 
     @Override

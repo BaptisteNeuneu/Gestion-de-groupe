@@ -5,7 +5,9 @@ import fr.iutfbleau.projetIHM2022FI2.API.*;
 import fr.iutfbleau.projetIHM2022FI2.Admin.Vue.*;
 
 public class Initialisation{
-
+    /**
+     * initilise pour tester 
+     */
     public Initialisation(){
 
     Etudiant e1 = new EtudiantNP("césar", "lycurgus");

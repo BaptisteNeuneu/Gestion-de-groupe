@@ -11,7 +11,13 @@ import fr.iutfbleau.projetIHM2022FI2.MP.*;
 
 public class VueAdmin {
 
-
+    /**
+     * Initialise l'interface d'admin en créant tous les panneaux et les placant
+     * Et lance panlayout qui gère le panneau actif d'admin
+     * Et lance Panjtree qui doit ajoute le jtree mais qui ne fonctionne pas
+     * contient tous les boutons qui vont gérer panlayout
+     * @param agf
+     */
     public VueAdmin(AbstractGroupeFactory agf) {
         final int menuHorizontal = 300;
         final int menuVertical = 800;
@@ -70,7 +76,7 @@ public class VueAdmin {
         c.ipady =0;
 
         affichage.setLayout(j);
-        JScrollPane affgroup = new JScrollPane();
+        JPanel affgroup = new JPanel();
         affgroup.setBorder(BorderFactory.createLineBorder(Color.black, 1));
         PanTree a = new PanTree(affgroup, agf);
         a.AffJTree(affgroup);
@@ -83,9 +89,6 @@ public class VueAdmin {
         affichage.add(instru);
 
 
-        //Pancardlayout l = new Pancardlayout(affichage);
-        //l.adPanel();
-        //affichage.add(l);
         ActionMenuAdmin i = new ActionMenuAdmin(AddEtu,CreeGroup,SupGroup,RenGroup,DepEtu,l,agf);
         AddEtu.addActionListener(i);
         CreeGroup.addActionListener(i);

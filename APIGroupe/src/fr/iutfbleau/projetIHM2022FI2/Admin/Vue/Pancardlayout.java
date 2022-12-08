@@ -92,7 +92,7 @@ public Pancardlayout(JPanel instru,AbstractGroupeFactory agf){
         instru.add(creegroup, "textcreegroup");
 
         //Mise en place supgroup
-        g = new GridLayout(3,1);
+
         supgroup.setLayout(g);
         sousgroupe = new JLabel("nom du groupe :");
         supgroup.add(sousgroupe);
@@ -134,8 +134,7 @@ public Pancardlayout(JPanel instru,AbstractGroupeFactory agf){
         depetu.add(ngroupe);
         depetu.add(valdepetu);
         instru.add(depetu, "textdepetu");
-        ActionAdminInstru j = new ActionAdminInstru(partition, nummin, nummax, nbrpartition, nummin, nummax, nbrpartition, valaddetu, valcreegroup, valsupgroup, valrengroup, valdepetu, agf);
-        valaddetu.addActionListener(j);
+        ActionAdminInstru j = new ActionAdminInstru(nummin, nummax, nbrpartition, partition, nummaxtext, nummintext, nummaxtext, valaddetu, valcreegroup, valsupgroup, valrengroup, valdepetu, agf);
         valcreegroup.addActionListener(j);
         valdepetu.addActionListener(j);
         valrengroup.addActionListener(j);
@@ -192,6 +191,10 @@ public Pancardlayout(JPanel instru,AbstractGroupeFactory agf){
         card.show(instru,"textdepetu");
     }
 
+    /**
+     * retourne le pancardlayout
+     * @return
+     */
     public Pancardlayout getPancardlayout(){
         return this;
     }
