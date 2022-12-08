@@ -12,7 +12,7 @@ public class TestTexteMP{
         
         // Notez que à gauche d'une déclaration on utilise une interface et à droite une version concrète.
         // Il faut que votre vue se calque sur le fonctionnemment de ce main et ne fasse pas d'hypothèse sur l'implémentation concrète de l'interface.
-        // i.e. entre les versions non persistantes (qui terminent par NP) et votre implémentation éventuelle persistante, le seul changement de comportement devrait être la persistance.
+        // i.e. entre les versions non persistantes (qui terminent par MP) et votre implémentation éventuelle persistante, le seul changement de comportement devrait être la persistance.
         //
 
         System.out.println("Test de l\'API");
@@ -94,23 +94,18 @@ public class TestTexteMP{
         System.out.println("terminé.");
 
         System.out.print("Création de l\'usine à groupe");
-        AbstractGroupeFactory agf = new AbstractGroupeFactoryNP("BUT2 FI", 15, 92);
+        AbstractGroupeFactoryMP agf = new AbstractGroupeFactoryMP("BUT2 FI", 15, 92);
         System.out.println("terminé.");
 
         System.out.print("Création de l\'usine à changement");
-        AbstractChangementFactory acf = new AbstractChangementFactoryNP(agf);
+        AbstractChangementFactoryMP acf = new AbstractChangementFactoryMP(agf);
         System.out.println("terminé.");
 
         System.out.print("Ajout des étudiants dans le groupe de la promotion racine");
 
         agf.addToGroupe(agf.getPromotion(),e1);
         agf.addToGroupe(agf.getPromotion(),e2);
-        agf.addToGrouppackage fr.iutfbleau.projetIHM2022FI2.Test;
-
-        public class TestTexteMP {
-            
-        }
-        e(agf.getPromotion(),e13);
+        agf.addToGroupe(agf.getPromotion(),e13);
         agf.addToGroupe(agf.getPromotion(),e14);
         agf.addToGroupe(agf.getPromotion(),e15);
         agf.addToGroupe(agf.getPromotion(),e16);
@@ -172,7 +167,7 @@ public class TestTexteMP{
         System.out.println("==========================");
         System.out.println("Partition du groupe racine en 3 groupes TD.");
         agf.createPartition(agf.getPromotion(), "TD",4);
-        //System.out.println(agf.getPromotion().monPrint());
+        //System.out.println(agf.getPromotion().moMPrint());
 
         Groupe racineDeLaPartition = agf.getPromotion().getSousGroupes().iterator().next();
         System.out.println(racineDeLaPartition.monPrint());
@@ -189,7 +184,7 @@ public class TestTexteMP{
         Groupe B = itgr.next(); // second sous-groupe
         B = itgr.next(); // troisième sous-groupe
         Etudiant e = A.getEtudiants().iterator().next();// premier étudiant du premier sous-groupe.
-        acf.createChangement(A,e,B);
+        acf.createChangement(A,e,B,"je n'aime pas ce groupe");
         System.out.println("Récupération des changements (en fait un seul pour l'instant)");
         Iterator<Changement> itch = acf.getAllChangements().iterator();
         Changement c = itch.next();
@@ -209,8 +204,8 @@ public class TestTexteMP{
         B = itgr.next(); // second sous-groupe
         Etudiant etu1 = A.getEtudiants().iterator().next();// premier étudiant du premier sous-groupe.
         Etudiant etu2 = B.getEtudiants().iterator().next();// premier étudiant du premier sous-groupe.
-        acf.createChangement(A,etu1,B);
-        acf.createChangement(B,etu2,A);
+        acf.createChangement(A,etu1,B,"la vie est plus rose");
+        acf.createChangement(B,etu2,A,"ils sont tellements bruyants");
         // Impression des changements.
         for (Changement cgt : acf.getAllChangements()){
             System.out.println(cgt.monPrint());
@@ -218,7 +213,7 @@ public class TestTexteMP{
         itch = acf.getAllChangements().iterator();
         c = itch.next();
         System.out.println("Suppression d'un changement. Il reste :");
-        acf.deleteChangement(itch.next());
+        acf.deleteChangement(c);
         for (Changement cgt : acf.getAllChangements()){
             System.out.println(cgt.monPrint());
         }
