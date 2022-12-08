@@ -17,7 +17,9 @@ public class PageEtu{
     private int longueurFixe;
     private int hauteurFixe;
     private PanneauEtu premierPanneau;
-    ListeChangement liste;
+    ListeGroupe liste1;
+    ListeEtudiant liste2;
+    ListeChangement liste3;
     public PageEtu(PanneauEtu panel,JPanel panneau,int d,int l,int h){
         this.premierPanneau=panel;
         this.longueurFixe=l;
@@ -74,19 +76,19 @@ public class PageEtu{
         return this.scroll;
     }
     public void listeGroupe(){
-        ListeGroupe liste = new ListeGroupe();
-        liste.ajouter(this,this.longueurFixe/8,this.hauteurFixe/11);
+        this.liste1 = new ListeGroupe();
+        this.liste1.ajouter(this,this.longueurFixe/8,this.hauteurFixe/11);
     }  
     public void listeEtudiant(){
-        ListeEtudiant liste = new ListeEtudiant();
-        liste.ajouter(this,this.longueurFixe/4,this.hauteurFixe/11);
+        this.liste2 = new ListeEtudiant();
+        this.liste2.ajouter(this,this.longueurFixe/4,this.hauteurFixe/11);
     }
     public void listeChangement(){
-        this.liste = new ListeChangement();
-        this.liste.ajouter(this,this.longueurFixe/8,this.hauteurFixe/11);
+        this.liste3 = new ListeChangement();
+        this.liste3.ajouter(this,this.longueurFixe/8,this.hauteurFixe/11);
     }
     public void changement(){
-        DemandeEtu demande = new DemandeEtu(this,this.longueurFixe/11,this.hauteurFixe/11,this.getPremierPanneau().getP(2).getListe());
+        DemandeEtu demande = new DemandeEtu(this,this.longueurFixe/11,this.hauteurFixe/11,this.getPremierPanneau().getP(2).getListe3());
         this.panel=demande.getPanel();
     }
     public void validation(){
@@ -108,8 +110,14 @@ public class PageEtu{
     public int getDif(){
         return this.dif;
     }
-    public ListeChangement getListe(){
-        return this.liste;
+    public ListeGroupe getListe1(){
+        return this.liste1;
+    }
+    public ListeEtudiant getListe2(){
+        return this.liste2;
+    }
+    public ListeChangement getListe3(){
+        return this.liste3;
     }
     public PanneauEtu getPremierPanneau(){
         return this.premierPanneau;
