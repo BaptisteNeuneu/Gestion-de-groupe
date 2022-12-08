@@ -110,6 +110,6 @@ public interface AbstractGroupeFactory {
      */
     public Set<Groupe> getGroupesOfEtudiant(Etudiant etu);
 
-    
+    public Groupe getGroupeByName(String name);
     
 }
