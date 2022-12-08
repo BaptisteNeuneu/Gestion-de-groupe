@@ -90,6 +90,14 @@ public interface Groupe extends MonPrint {
      */
     public Set<Etudiant> getEtudiants();
     
+
+    /**
+     * permet de renommer un groupe.
+     * @param name le nom.
+     */
+    public void setName(String name);
+
+
     /**
      * @see MonPrint
      * NB. On n'utilise le mécanisme des méthodes par défaut pour donner du code dans une interface. C'est un petit peu laid et à contre-emploi mais pratique ici.

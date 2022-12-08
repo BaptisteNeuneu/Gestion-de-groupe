@@ -50,6 +50,6 @@ public interface AbstractChangementFactory {
      * @throws java.lang.IllegalArgumentException si les groupes ou l'étudiant ne sont pas connus de la factory partenaire, ou e n'appartient pas à A ou A et B ne sont pas frères dans l'arbre des groupes.
      *        
      */
-    public void createChangement(Groupe A, Etudiant e, Groupe B);
+    public void createChangement(Groupe A, Etudiant e, Groupe B, String explication);
     
 }

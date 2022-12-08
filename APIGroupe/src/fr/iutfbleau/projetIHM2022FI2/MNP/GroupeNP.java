@@ -179,6 +179,15 @@ public class GroupeNP implements Groupe {
     }
 
     /**
+     * Renomme le groupe
+     * @param name le nouveau nom
+     */
+    public void setName(String name){
+        this.name = name;
+    }
+    
+
+    /**
      * Potentiellement "vide"
      * Attention nous renvoyons l'ensemble sans le copier
      *

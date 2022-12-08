@@ -16,8 +16,9 @@ public class ChangementNP implements Changement {
     private int id;
     private Groupe a,b;
     private Etudiant e;
+    private String explication;
 
-    public ChangementNP(Groupe a, Etudiant e, Groupe b){
+    public ChangementNP(Groupe a, Etudiant e, Groupe b, String explication){
         Objects.requireNonNull(a,"On ne peut pas créer un changement avec un groupe à quitter null");
         Objects.requireNonNull(b,"On ne peut pas créer un changement avec un groupe à rejoindre null");
         Objects.requireNonNull(e,"On ne peut pas créer un changement concernant un étudiant null");
@@ -26,6 +27,7 @@ public class ChangementNP implements Changement {
         this.a=a;
         this.b=b;
         this.e=e;
+        this.explication = explication;
     }
     
     /**
@@ -58,6 +60,10 @@ public class ChangementNP implements Changement {
      */
     public Etudiant getEtu(){
         return this.e;
+    }
+
+    public String getExplication() {
+        return this.explication;
     }
 
 }

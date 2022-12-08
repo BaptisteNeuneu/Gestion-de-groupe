@@ -32,7 +32,13 @@ public interface Changement extends MonPrint {
      */
     public Etudiant getEtu();
 
-    
+
+    /**
+     * permet de récupérer l'explication du changement
+     * @return l'explication
+     */
+    public String getExplication();
+
     /**
      * @see MonPrint
      * NB. On n'utilise le mécanisme des méthodes par défaut pour donner du code dans une interface. C'est un petit peu laid et à contre-emploi mais pratique ici.

@@ -5,6 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import fr.iutfbleau.projetIHM2022FI2.MNP.*;
 import fr.iutfbleau.projetIHM2022FI2.API.*;
+import fr.iutfbleau.projetIHM2022FI2.MP.*;
 
 public class Pancardlayout extends JPanel {
     
@@ -21,6 +22,7 @@ public class Pancardlayout extends JPanel {
 /**
  * @param panel TODO
  * @param affichage
+ * recupere la gestion du groupe et le panneau qui va integerer le cardlayout
  */
 public Pancardlayout(JPanel instru,AbstractGroupeFactory agf){
     this.instru = instru;
@@ -74,6 +76,9 @@ public Pancardlayout(JPanel instru,AbstractGroupeFactory agf){
         creegroup.add(groupe);
         creegroup.add(valcreegroup);
         instru.add(creegroup, "textcreegroup");
+
+        //Mise en place supgroup
+
         supgroup.setLayout(g);
         sousgroupe = new JLabel("numero du groupe :");
         supgroup.add(sousgroupe);
@@ -81,6 +86,9 @@ public Pancardlayout(JPanel instru,AbstractGroupeFactory agf){
         supgroup.add(groupe);
         supgroup.add(valsupgroup);
         instru.add(supgroup,"textsupgroup");
+
+        //Mise en place rennomer groupe
+
         rengroup.setLayout(j);
         sousgroupe = new JLabel("numero du groupe :");
         rengroup.add(sousgroupe);
@@ -92,6 +100,9 @@ public Pancardlayout(JPanel instru,AbstractGroupeFactory agf){
         rengroup.add(ngroupe);
         rengroup.add(valrengroup);
         instru.add(rengroup,"textrengroup");
+
+        //Deplacer etudiant 
+
         h =  new GridLayout(7,1);
         depetu.setLayout(h);
         sousgroupe = new JLabel("numero du groupe actuel");
@@ -111,30 +122,51 @@ public Pancardlayout(JPanel instru,AbstractGroupeFactory agf){
         
     }
 
+    /**
+     * retourne le panneau
+     * @return
+     */
     public JPanel getPanel(){
         return this.instru;
     }
 
+
+    /**
+     * retourne le panneau pour addetu
+     */
     public void getaddetu(){
         card.show(instru,"texaddetu");
 
     }
 
+    /**
+     * retourne le panneau pour cree un group
+     */
     public void getcreegroup(){
         card.show(instru,"textcreegroup");
 
     }
 
+
+    /**
+     * retourne le panneau de suppression de groupe
+     */
     public void getsupgroup(){
         card.show(instru,"textsupgroup");
 
     }
 
+    /**
+     * retourne le panneau pour renommer le groupe
+     */
     public void getrengroup(){
         card.show(instru,"textrengroup");
 
     }
 
+    /**
+     * retourne
+     */
     public void getdepetu(){
         card.show(instru,"textdepetu");
     }

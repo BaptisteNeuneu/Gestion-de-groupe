@@ -10,7 +10,6 @@ public class AbstractChangementFactoryNP implements AbstractChangementFactory {
 
     // l'usine à groupe travaillant en tandem avec cette usine.
     private AbstractGroupeFactory agf;
-    = DriverManager.getConnection("jdbc:mariadb://dwarves.iut-fbleau.fr/fouche","fouche", "fouche");
 
     // On utilise une table de hachage pour retrouver facilement un changement (à partir de son id).
     // Si il y a beaucoup de changements c'est plus rapide que de parcourir toute une liste.
@@ -59,8 +58,8 @@ public class AbstractChangementFactoryNP implements AbstractChangementFactory {
         if (!agf.knows(a)) throw new IllegalStateException("Le groupe de départ du changement est inconnu. Impossible à mettre en oeuvre.");
         
         if (!agf.knows(b)) throw new IllegalStateException("Le groupe d'arrivée du changement est inconnu. Impossible à mettre en oeuvre.");
-        // pas encore implanté.
-        // if(!agf.getGroupesOfEtudiant(e).contains(a)) throw new IllegalStateException("Le groupe de départ ne contient pas l'étudiant. Impossible à mettre en oeuvre.");
+        
+        if(!agf.getGroupesOfEtudiant(e).contains(a)) throw new IllegalStateException("Le groupe de départ ne contient pas l'étudiant. Impossible à mettre en oeuvre.");
             
         agf.dropFromGroupe(a,e);
         agf.addToGroupe(b,e);
@@ -88,17 +87,18 @@ public class AbstractChangementFactoryNP implements AbstractChangementFactory {
      * @param A groupe actuel
      * @param B groupe demandé
      * @param e étudiant concerné par le changement
-     *
+     * @param explication explication pour l'administrateur 
      * @throws java.lang.NullPointerException si un argument est null
      * @throws java.lang.IllegalArgumentException si les groupes ou l'étudiant ne sont pas connus de la factory partenaire, ou e n'appartient pas à A ou A et B ne sont pas frères dans l'arbre des groupes.
      *        
      */
-    public void createChangement(Groupe A, Etudiant e, Groupe B){
+    public void createChangement(Groupe A, Etudiant e, Groupe B, String explication){
         Objects.requireNonNull(A,"Le groupe d'origine ne peut pas être null");
         Objects.requireNonNull(B,"Le groupe d'arrivée ne peut pas être null");
         Objects.requireNonNull(e,"L'étudiant ne peut pas être null");
-
-        Changement c = new ChangementNP(A,e,B);
+        if(!A.getPointPoint().equals(B.getPointPoint()))
+            throw new IllegalArgumentException("Les groupes ne sont pas frères");
+        Changement c = new ChangementNP(A,e,B,explication);
         this.brain.put(Integer.valueOf(c.getId()),c);   
     }
     
