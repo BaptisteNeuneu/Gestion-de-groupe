@@ -58,7 +58,7 @@ public class AbstractChangementFactoryMP implements AbstractChangementFactory {
         // la méthode value() d'un hashmap retourne la collection des valeurs.
         // Il faut transformer la collection en Set.
         // Un constructeur de HashSet permet de faire cette opération.
-        Set<Changement> out = new HashSet(this.brain.values());
+        Set<Changement> out = new HashSet<Changement>(this.brain.values());
         return out;
     }
     /**
@@ -106,11 +106,12 @@ public class AbstractChangementFactoryMP implements AbstractChangementFactory {
      * @throws java.lang.IllegalArgumentException si les groupes ou l'étudiant ne sont pas connus de la factory partenaire, ou e n'appartient pas à A ou A et B ne sont pas frères dans l'arbre des groupes.
      *        
      */
-    public void createChangement(Groupe A, Etudiant e, Groupe B){
+    public void createChangement(Groupe A, Etudiant e, Groupe B,String ex){
         Objects.requireNonNull(A,"Le groupe d'origine ne peut pas être null");
         Objects.requireNonNull(B,"Le groupe d'arrivée ne peut pas être null");
         Objects.requireNonNull(e,"L'étudiant ne peut pas être null");
-        Changement c = new ChangementMP(A,e,B);
+        Objects.requireNonNull(ex,"L'étudiant ne peut pas être null");
+        Changement c = new ChangementMP(A,e,B,ex);
         this.brain.put(Integer.valueOf(c.getId()),c);   
     }
     public void createChangement(int id){
@@ -125,8 +126,9 @@ public class AbstractChangementFactoryMP implements AbstractChangementFactory {
                     int A = rs.getInt("A");
                     int B = rs.getInt("B");
                     String nomEtu = rs.getNString("nomEtu");
+                    String explication = rs.getNString("explication");
 
-                    Changement c = new ChangementMP(agf.getBrain().get(A),agf.getEtudiant(nomEtu),agf.getBrain().get(A));
+                    Changement c = new ChangementMP(agf.getBrain().get(A),agf.getEtudiant(nomEtu),agf.getBrain().get(A),explication);
                     this.brain.put(Integer.valueOf(c.getId()),c);  
 
 		    		con.close();
