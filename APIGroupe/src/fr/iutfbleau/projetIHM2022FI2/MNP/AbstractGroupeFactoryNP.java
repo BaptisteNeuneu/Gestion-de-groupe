@@ -1,6 +1,7 @@
 package fr.iutfbleau.projetIHM2022FI2.MNP;
 import fr.iutfbleau.projetIHM2022FI2.API.*;
 import java.util.*;
+import java.util.function.BiConsumer;
 /**
  * Usine abstraite gérant l'ensemble des groupes.
  * 
@@ -230,9 +231,23 @@ public class AbstractGroupeFactoryNP implements AbstractGroupeFactory {
     }
 
     public Groupe getGroupeByName(String name){
+
+        Objects.requireNonNull(name,"Le nom du groupe doit existé");
+
         Set<Groupe> out = new LinkedHashSet<Groupe>();
-        
-        return a;
+        this.brain.forEach(new BiConsumer<Integer,Groupe>() {
+         @Override
+         public void accept(Integer i,Groupe g){
+            out.add(g);
+         }   
+        });
+
+        for(Groupe grp : out){
+            if(grp.getName().equals(name)){
+                return grp;
+            }
+        }
+        return null;
     }
     
 }

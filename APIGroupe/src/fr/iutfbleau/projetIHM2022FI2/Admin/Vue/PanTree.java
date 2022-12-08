@@ -16,37 +16,52 @@ public class PanTree implements TreeSelectionListener {
 
     private JScrollPane affgroup;
     private Groupe pere;
+    private String nompere;
+    private String nomfils;
+    private Set<Groupe> allgroupe;
     AbstractGroupeFactory agf;
     String sousgroupe;
 
     public PanTree(JScrollPane affgroup,AbstractGroupeFactory agf){
         this.affgroup = affgroup;
         this.agf = agf;
+    }
+
+    public JTree baseJTree(){
+        pere = agf.getPromotion();
+        nompere = pere.getName();
+        DefaultMutableTreeNode racine = new DefaultMutableTreeNode(nompere);
+        JTree arbre = new JTree(racine);
+        this.addJtree(pere,racine);
+        return arbre;
 
     }
 
-    public void AddPantree(){
-        pere = agf.getPromotion();
-        String perename = pere.getName();
-        DefaultMutableTreeNode racine = new DefaultMutableTreeNode(perename);
-        JTree arbre = new JTree(racine);
-        affgroup.add(arbre);
-        Set<Groupe> allgroupe = pere.getSousGroupes();
-        for (Groupe a : allgroupe) {
-            sousgroupe = a.getName();
-            DefaultMutableTreeNode sousGroupe = new DefaultMutableTreeNode(sousgroupe);
-            racine.add(sousGroupe);
-            if(a.getSousGroupes != null){
-                allgroupe = a.getSousGroupes;
-                for (Groupe b  : allgroupe) {
-            sousgroupe = b.getName();
-            sousGroupe = new DefaultMutableTreeNode(sousgroupe);
-            a.add(sousGroupe);
-            if(b.)
+
+    public void addJtree(Groupe pere,DefaultMutableTreeNode racine){
+        allgroupe = pere.getSousGroupes();
+        for(Groupe fils : allgroupe){
+            nomfils = fils.getName();
+            DefaultMutableTreeNode branche = new DefaultMutableTreeNode(nomfils);
+            racine.add(branche);
+            if(fils.getSousGroupes() != null){
+                racine = branche;
+                pere=fils;
+                this.addJtree(pere, racine);
             }
         }
     }
 
+
+    public void AffJTree(JScrollPane affgroup){
+        JTree a =this.baseJTree();
+        affgroup.add(a);
+    }
+
+    public void refreshTree(){
+
+    }
+
     @Override
     public void valueChanged(TreeSelectionEvent e) {
 
@@ -54,9 +69,4 @@ public class PanTree implements TreeSelectionListener {
         
     }
 
-    @Override
-    public void valueChanged(TreeSelectionEvent e) {
-        // TODO Auto-generated method stub
-        
-    }
 }

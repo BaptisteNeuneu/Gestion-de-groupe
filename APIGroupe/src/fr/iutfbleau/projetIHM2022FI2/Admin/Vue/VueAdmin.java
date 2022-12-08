@@ -68,16 +68,21 @@ public class VueAdmin {
         c.gridy = 1;
         c.ipadx = 0;
         c.ipady =0;
+
         affichage.setLayout(j);
+        JScrollPane affgroup = new JScrollPane();
+        affgroup.setBorder(BorderFactory.createLineBorder(Color.black, 1));
+        PanTree a = new PanTree(affgroup, agf);
+        a.AffJTree(affgroup);
+        affichage.add(affgroup);
+        WindowsAdmin.add(affichage, c);
         JPanel instru = new JPanel();
         Pancardlayout l = new Pancardlayout(instru,agf);
         l.adPanel();
         instru.setBorder(BorderFactory.createLineBorder(Color.black, 1));
         affichage.add(instru);
-        JScrollPane affgroup = new JScrollPane();
-        affgroup.setBorder(BorderFactory.createLineBorder(Color.black, 1));
-        affichage.add(affgroup);
-        WindowsAdmin.add(affichage, c);
+
+
         //Pancardlayout l = new Pancardlayout(affichage);
         //l.adPanel();
         //affichage.add(l);

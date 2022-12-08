@@ -5,6 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import fr.iutfbleau.projetIHM2022FI2.MNP.*;
 import fr.iutfbleau.projetIHM2022FI2.API.*;
+import fr.iutfbleau.projetIHM2022FI2.Admin.Controleur.ActionAdminInstru;
 import fr.iutfbleau.projetIHM2022FI2.MP.*;
 
 
@@ -58,7 +59,7 @@ public Pancardlayout(JPanel instru,AbstractGroupeFactory agf){
         addetu.add(nometudiant);
         etud = new JTextField();
         addetu.add(etud);
-        sousgroupe = new JLabel("numero du groupe :");
+        sousgroupe = new JLabel("nom du groupe :");
         addetu.add(sousgroupe);
         groupe = new JTextField();
         addetu.add(groupe);
@@ -69,19 +70,31 @@ public Pancardlayout(JPanel instru,AbstractGroupeFactory agf){
          * Mise en place dupanneau sous groupe
          */
 
-        g = new GridLayout(3,1);
+        g = new GridLayout(8,1);
         creegroup.setLayout(g);
-        sousgroupe = new JLabel("numero du groupe :");
+        sousgroupe = new JLabel("nom du groupe :");
         creegroup.add(sousgroupe);
         groupe = new JTextField();
         creegroup.add(groupe);
+        JLabel nummintext = new JLabel("nombre minimum d'etudiant :");
+        creegroup.add(nummintext);
+        JTextField nummin = new JTextField();
+        creegroup.add(nummin);
+        JLabel nummaxtext = new JLabel("nombre maximum d'etudiant :");
+        creegroup.add(nummaxtext);
+        JTextField nummax = new JTextField();
+        creegroup.add(nummax);
+        JCheckBox partition = new JCheckBox("partition");
+        creegroup.add(partition);
+        JTextField nbrpartition = new JTextField();
+        creegroup.add(nbrpartition);
         creegroup.add(valcreegroup);
         instru.add(creegroup, "textcreegroup");
 
         //Mise en place supgroup
-
+        g = new GridLayout(3,1);
         supgroup.setLayout(g);
-        sousgroupe = new JLabel("numero du groupe :");
+        sousgroupe = new JLabel("nom du groupe :");
         supgroup.add(sousgroupe);
         groupe = new JTextField();
         supgroup.add(groupe);
@@ -91,11 +104,11 @@ public Pancardlayout(JPanel instru,AbstractGroupeFactory agf){
         //Mise en place rennomer groupe
 
         rengroup.setLayout(j);
-        sousgroupe = new JLabel("numero du groupe :");
+        sousgroupe = new JLabel("nom du groupe :");
         rengroup.add(sousgroupe);
         groupe = new JTextField();
         rengroup.add(groupe);
-        newgroupe = new JLabel("numero du nouveau groupe :");
+        newgroupe = new JLabel("nom du nouveau groupe :");
         rengroup.add(newgroupe);
         ngroupe = new JTextField();
         rengroup.add(ngroupe);
@@ -107,7 +120,7 @@ public Pancardlayout(JPanel instru,AbstractGroupeFactory agf){
 
         h =  new GridLayout(7,1);
         depetu.setLayout(h);
-        sousgroupe = new JLabel("numero du groupe actuel");
+        sousgroupe = new JLabel("nom du groupe actuel");
         depetu.add(sousgroupe);
         groupe = new JTextField();
         depetu.add(groupe);
@@ -115,12 +128,18 @@ public Pancardlayout(JPanel instru,AbstractGroupeFactory agf){
         depetu.add(nometudiant);
         etud = new JTextField();
         depetu.add(etud);
-        newgroupe = new JLabel("numero du nouveau groupe :");
+        newgroupe = new JLabel("nom du nouveau groupe :");
         depetu.add(newgroupe);
         ngroupe = new JTextField();
         depetu.add(ngroupe);
         depetu.add(valdepetu);
         instru.add(depetu, "textdepetu");
+        ActionAdminInstru j = new ActionAdminInstru(partition, nummin, nummax, nbrpartition, nummin, nummax, nbrpartition, valaddetu, valcreegroup, valsupgroup, valrengroup, valdepetu, agf);
+        valaddetu.addActionListener(j);
+        valcreegroup.addActionListener(j);
+        valdepetu.addActionListener(j);
+        valrengroup.addActionListener(j);
+        valsupgroup.addActionListener(j);
         
     }
 
