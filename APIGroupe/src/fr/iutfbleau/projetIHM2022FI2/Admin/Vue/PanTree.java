@@ -11,6 +11,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 
 import fr.iutfbleau.projetIHM2022FI2.API.*;
 import fr.iutfbleau.projetIHM2022FI2.MP.*;
+import fr.iutfbleau.projetIHM2022FI2.MNP.*;
 
 public class PanTree implements TreeSelectionListener {
 

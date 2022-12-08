@@ -7,6 +7,7 @@ import javax.swing.*;
 import fr.iutfbleau.projetIHM2022FI2.API.*;
 import fr.iutfbleau.projetIHM2022FI2.Admin.Controleur.ActionAdminInstru;
 import fr.iutfbleau.projetIHM2022FI2.MP.*;
+import fr.iutfbleau.projetIHM2022FI2.MNP.*;
 
 
 public class Pancardlayout extends JPanel {
