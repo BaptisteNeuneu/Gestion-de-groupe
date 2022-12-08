@@ -6,58 +6,78 @@ import java.util.Set;
 import javax.swing.*;
 import fr.iutfbleau.projetIHM2022FI2.API.*;
 import fr.iutfbleau.projetIHM2022FI2.MNP.*;
-import fr.iutfbleau.projetIHM2022FI2.MP.*;
 
 
 public class ActionAdminInstru implements ActionListener {
-   Etudiant b;
+   boolean a;
    AbstractGroupeFactory gestiongroupe;
-   AbstractChangementFactory gestionchangement;
-   String nometudiant, groupeactuel, newgroupeorgroupename;
+   String nometudiant, sousgroupe, newgroupe,nummintext,nummaxtext,nbrpartitiontext;
    JButton valaddetu,valcreegroup,valsupgroup,valrengroup,valdepetu;
-   public ActionAdminInstru(JLabel nom,JLabel sous,JLabel newg,JButton valaddetu,JButton valcreegroup,JButton valsupgroup,JButton valrengroup,JButton valdepetu,AbstractGroupeFactory gestiongroupe){
+   public ActionAdminInstru(JTextField nummin,JTextField nummax,JTextField nbrpartition,JCheckBox partition,JLabel nom,JLabel sous,JLabel newg,JButton valaddetu,JButton valcreegroup,JButton valsupgroup,JButton valrengroup,JButton valdepetu,AbstractGroupeFactory gestiongroupe){
     this.nometudiant = nom.getText();
-    this.groupeactuel = sous.getText();
-    this.newgroupeorgroupename = newg.getText();
+    this.sousgroupe = sous.getText();
+    this.newgroupe = newg.getText();
+    this.nummintext = nummin.getText();
+    this.nummaxtext = nummax.getText();
+    this.nbrpartitiontext = nbrpartition.getText();
+    this.a = partition.isSelected();
     this.valaddetu = valaddetu;
     this.valcreegroup = valcreegroup;
     this.valsupgroup = valsupgroup;
     this.valrengroup = valrengroup;
     this.valdepetu = valdepetu;
     this.gestiongroupe = gestiongroupe;
-   } 
+   }
+    
 
    public void actionPerformed(ActionEvent e){
-      gestionchangement = new AbstractChangementFactoryNP(gestiongroupe) ;
-      
-      Set<Etudiant> listeetu = gestiongroupe.getEtudiants(nometudiant);
-      for(Etudiant a : gestiongroupe.getPromotion().getEtudiants()){
-         if(a.getNom() == nometudiant){
-            Etudiant b = a;
-         }
-      }
-
-      Groupe pere = gestiongroupe.getGroupebyName();
       
 
       if(e.getSource() == valaddetu){
-         gestiongroupe.addToGroupe(pere,b);
+         Set<Etudiant> listeetu = gestiongroupe.getEtudiants(nometudiant);
+         for (Etudiant a : listeetu) {
+            if (a.getNom() == nometudiant) {
+               break;
+            }
+         }
+         Groupe pere = gestiongroupe.getGroupeByName(sousgroupe);
+         gestiongroupe.addToGroupe(pere,a);
       }
 
       if(e.getSource() == valcreegroup){
-         gestiongroupe.createGroupe(pere,newgroupeorgroupename,15,60);
+         if(a== true){
+            int nbrpartition = Integer.parseInt(nbrpartitiontext);
+            Groupe pere = gestiongroupe.getGroupeByName(sousgroupe);
+            gestiongroupe.createPartition(pere,newgroupe,nbrpartition);
+         } else {
+         Groupe pere = gestiongroupe.getGroupeByName(sousgroupe);
+         int nbrmin = Integer.parseInt(nummintext);
+         int nbrmax = Integer.parseInt(nummaxtext);
+         gestiongroupe.createGroupe(pere,newgroupe,15,60);
+         }
       }
 
       if(e.getSource() == valrengroup){
-         pere.setName(newgroupeorgroupename);
+         Groupe pere = gestiongroupe.getGroupeByName(sousgroupe);
+         pere.setName(newgroupe);
       }
 
       if(e.getSource() == valsupgroup){
+         Groupe pere = gestiongroupe.getGroupeByName(sousgroupe);
          gestiongroupe.deleteGroupe(pere);
       }
 
       if(e.getSource() == valdepetu){
-         gestionchangement.applyChangement(null);
+         Groupe pere = gestiongroupe.getGroupeByName(sousgroupe);
+         Groupe fils = gestiongroupe.getGroupeByName(newgroupe);
+         Set<Etudiant> listeetu = pere.getEtudiants(nometudiant);
+         for (Etudiant a : listeetu) {
+            if (a.getNom() == nometudiant) {
+               break;
+            }
+         }
+         gestiongroupe.dropFromGroupe(pere,a);
+         gestiongroupe.addToGroupe(fils,a);
       }
 
 }
