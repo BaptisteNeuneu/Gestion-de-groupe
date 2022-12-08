@@ -1,3 +1,4 @@
+
 package fr.iutfbleau.projetIHM2022FI2.API;
 import java.util.*;
 /**
@@ -127,3 +128,4 @@ public interface Groupe extends MonPrint {
     }
 
 }
+

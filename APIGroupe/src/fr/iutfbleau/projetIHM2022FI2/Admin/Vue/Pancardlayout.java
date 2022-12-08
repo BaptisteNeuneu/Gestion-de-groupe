@@ -7,6 +7,7 @@ import fr.iutfbleau.projetIHM2022FI2.MNP.*;
 import fr.iutfbleau.projetIHM2022FI2.API.*;
 import fr.iutfbleau.projetIHM2022FI2.MP.*;
 
+
 public class Pancardlayout extends JPanel {
     
     CardLayout card;
@@ -102,6 +103,7 @@ public Pancardlayout(JPanel instru,AbstractGroupeFactory agf){
         instru.add(rengroup,"textrengroup");
 
         //Deplacer etudiant 
+
 
         h =  new GridLayout(7,1);
         depetu.setLayout(h);

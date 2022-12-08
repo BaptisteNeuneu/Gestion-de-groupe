@@ -23,7 +23,7 @@ public class AbstractGroupeFactoryMP implements AbstractGroupeFactory {
      * Il faut ensuite y ajouter les étudiants.
      */
     public AbstractGroupeFactoryMP(String name, int min, int max){
-        Objects.requireNonNull(name,"On ne peut pas créer une promotion  dont le nom est null");
+        Objects.requireNonNull(name,"On ne peut pas créer une promotion dont le nom est null");
         this.promo=new GroupeMP(name,min,max);
         this.brain=new HashMap<Integer,Groupe>();
         this.brain.put(Integer.valueOf(this.promo.getId()),this.promo);
@@ -34,6 +34,9 @@ public class AbstractGroupeFactoryMP implements AbstractGroupeFactory {
      */
     public Boolean knows(Groupe g){
         return this.brain.containsKey(Integer.valueOf(g.getId()));
+    }
+    public HashMap<Integer,Groupe> getBrain(){
+        return this.brain;
     }
 
     
@@ -125,7 +128,7 @@ public class AbstractGroupeFactoryMP implements AbstractGroupeFactory {
             throw new IllegalArgumentException("Le nombre de partitions doit être strictement positif");
         }
         //Création de la racine de la partition.
-        Groupe copiePereRacinePartition = new GroupeNP(pere);
+        Groupe copiePereRacinePartition = new GroupeMP(pere);
         pere.addSousGroupe(copiePereRacinePartition);
         this.brain.put(Integer.valueOf(copiePereRacinePartition.getId()),copiePereRacinePartition);
         // création des sous-groupes
@@ -133,7 +136,7 @@ public class AbstractGroupeFactoryMP implements AbstractGroupeFactory {
         int max = ((int) Math.floor(pere.getSize()/n))+1;
         List<Groupe> groupes = new ArrayList<Groupe>(n);
         for(int i = 0; i<n; i++){
-            Groupe g = new GroupeNP(copiePereRacinePartition,name+"_"+i,min,max);
+            Groupe g = new GroupeMP(copiePereRacinePartition,name+"_"+i,min,max);
             groupes.add(i,g);// ajout dans le tableau des groupes
             copiePereRacinePartition.addSousGroupe(g);
             this.brain.put(Integer.valueOf(g.getId()),g);
@@ -207,6 +210,15 @@ public class AbstractGroupeFactoryMP implements AbstractGroupeFactory {
                 }
         }
         return out;
+    }
+    public Etudiant getEtudiant(String nomEtu){
+        // on cherche bêtement dans la promo.
+        for (Etudiant e : getPromotion().getEtudiants()){
+            if (e.getNom().equals(nomEtu)){
+                    return e;
+                }
+        }
+        return null;
     }
 
     /**

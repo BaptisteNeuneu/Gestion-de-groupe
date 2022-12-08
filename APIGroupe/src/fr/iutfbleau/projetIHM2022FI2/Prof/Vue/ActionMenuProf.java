@@ -9,24 +9,28 @@ public class ActionMenuProf implements ActionListener{
     JButton bouton1;
     JButton bouton2;
     JButton bouton3;
-    JPanel panneau;
-    public ActionMenuProf(CardLayout l,JButton b1, JButton b2, JButton b3, JPanel p){
+    JPanel panel;
+    PanneauProf panneau;
+    public ActionMenuProf(CardLayout l,JButton b1, JButton b2, JButton b3, JPanel p,PanneauProf page){
+        this.panneau=page;
         this.layout=l;
         this.bouton1=b1;
         this.bouton2=b2;
         this.bouton3=b3;
-        this.panneau=p;
+        this.panel=p;
     }
     public void actionPerformed(ActionEvent e){
         if(e.getSource()==this.bouton1){
-            this.layout.first(this.panneau);
+            this.panneau.getP(0).getListe1().reafficher();
+            this.layout.first(this.panel);
         }
         if(e.getSource()==this.bouton2){
-            this.layout.first(this.panneau);
-            this.layout.next(this.panneau);
+            this.panneau.getP(1).getListe2().reafficher();
+            this.layout.first(this.panel);
+            this.layout.next(this.panel);
         }
         if(e.getSource()==this.bouton3){
-            this.layout.last(this.panneau);
+            this.layout.last(this.panel);
         }
     }
 }

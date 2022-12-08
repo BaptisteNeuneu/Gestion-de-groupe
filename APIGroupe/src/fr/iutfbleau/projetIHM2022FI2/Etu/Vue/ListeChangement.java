@@ -42,7 +42,7 @@ public class ListeChangement{
                 matricule = "NomEtu :";
                 break;
                 case 2:
-                matricule = "PrénomEtu :";
+                matricule = "PrenomEtu :";
                 break;
                 case 3:
                 matricule = "NomGroupeA :";
@@ -71,7 +71,7 @@ public class ListeChangement{
     }
     public void ajoutCorps(){
         final int longueurCorps = 5;
-        ArrayDeque<ChangementNP> liste = this.page.recupTableau2();
+        ArrayDeque<Changement> liste = StaticMethodeEtu.recupTableau2(StaticMethodeEtu.getFactory());
         this.seuil=liste.size();
         int max=0;
         if(this.limite>this.seuil){
@@ -81,7 +81,7 @@ public class ListeChangement{
         }
         for(int i=1;i<=max;i++){
             if(!liste.isEmpty()){
-                ChangementNP changement0 = liste.remove();
+                Changement changement0 = liste.remove();
                 JPanel p = new JPanel();
                 p.setLayout(new GridLayout(1,longueurCorps));
                 for (int j=0;j<longueurCorps;j++){
@@ -125,9 +125,22 @@ public class ListeChangement{
         this.panel2.add(titre,this.page.getGbc());
     } 
     public void ajoutLien(){
-        for(int j=0;j<3;j++){
-            for(int i=1;i<=this.seuil;i++){
+        ArrayDeque<Changement> liste = StaticMethodeEtu.recupTableau2(StaticMethodeEtu.getFactory());
+        ArrayList<Changement> tab = new ArrayList<Changement>();
+        for(int i=1;i<=this.seuil;i++){
+            int retour=0;
+            Changement ch=null;
+                for(int j=0;j<3;j++){
                 String texte=" ";
+                if(j==0 && !liste.isEmpty()){
+                    ch=liste.remove(); 
+                    texte=ch.getEtu().getNom();
+                    retour=1;
+                }if(j==1 && retour==1){
+                    texte=ch.getA().getName();
+                }if(j==2 && retour ==1){
+                    texte=ch.getB().getName();
+                }
                 JButton lien = new JButton(texte);
                 lien.setFont(new Font(Font.SERIF, Font.PLAIN, 30));
                 lien.setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -140,7 +153,17 @@ public class ListeChangement{
     }
     public void ajoutListener(){
         for(int i=0;i<this.listeBouton.size();i++){
-            this.listeBouton.get(i).addActionListener(new ActionListeEtu(this.page.getPremierPanneau().getLayout(),this.page.getPremierPanneau().getPanneau(),this.page.getDif(),this.listeBouton));
+            this.listeBouton.get(i).addActionListener(new ActionListeEtu(this.page,this.page.getPremierPanneau().getLayout(),this.page.getPremierPanneau().getPanneau(),this.page.getDif(),this.listeBouton,i));
         }
+    }
+    public void reafficher(){
+        this.panel2.removeAll();
+        this.ajoutTitre();
+        this.ajoutCorps();
+        this.ajoutLien();
+        this.ajoutEntete();
+        this.panel2.revalidate();
+        this.page.setPanel(this.panel2);
+        this.ajoutListener();
     }
 }

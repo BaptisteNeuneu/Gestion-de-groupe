@@ -2,6 +2,7 @@ package fr.iutfbleau.projetIHM2022FI2.Etu.Vue;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.*;
 import java.awt.event.*;
 
 public class PanneauEtu{
@@ -9,7 +10,9 @@ public class PanneauEtu{
     private CardLayout layout;
     private int longueur;
     private int hauteur; 
+    private ArrayList<PageEtu> p;
     public PanneauEtu(int l, int h){
+        this.p=new ArrayList<PageEtu>();
         this.longueur=l;
         this.hauteur=h;
         this.panneau = new JPanel();
@@ -21,22 +24,20 @@ public class PanneauEtu{
         createPanel(1);
         createPanel(2);
         createPanel(3);
-        //this.panneau.add(new JLabel("1"),"1");
-        //this.panneau.add(new JLabel("2"),"2");
-        //this.panneau.addMouseListener();
+        createPanel(4);
     }
     public void createPanel(int dif) {
-        PageEtu p= new PageEtu(this,this.panneau,dif,this.longueur,this.hauteur);
-        this.panneau.add(p.getScroll());
-        //System.out.println(p.getPanel());
-        //this.panneau.add(new JLabel(texte));
+        PageEtu page = new PageEtu(this,this.panneau,dif,this.longueur,this.hauteur);
+        this.p.add(page);
+        this.panneau.add(p.get(dif).getScroll());
     }
     public JPanel getPanneau(){
-        //Page p= new Page(this.panneau,"1");
-        //return p.getPanel();
         return this.panneau;
     }
     public CardLayout getLayout(){
         return this.layout;
+    }
+    public PageEtu getP(int dif){
+        return this.p.get(dif);
     }
 }

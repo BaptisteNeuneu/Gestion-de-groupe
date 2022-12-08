@@ -4,7 +4,9 @@ import java.util.Set;
 
 import javax.swing.*;
 import javax.swing.event.*;
+
 import javax.swing.tree.DefaultMutableTreeNode;
+
 
 import fr.iutfbleau.projetIHM2022FI2.MNP.*;
 import fr.iutfbleau.projetIHM2022FI2.API.*;
@@ -48,6 +50,13 @@ public class PanTree implements TreeSelectionListener {
     @Override
     public void valueChanged(TreeSelectionEvent e) {
 
+
+        
+    }
+
+    @Override
+    public void valueChanged(TreeSelectionEvent e) {
+        // TODO Auto-generated method stub
         
     }
 }

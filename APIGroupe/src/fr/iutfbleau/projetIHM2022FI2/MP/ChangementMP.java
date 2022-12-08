@@ -1,6 +1,7 @@
 package fr.iutfbleau.projetIHM2022FI2.MP;
 import fr.iutfbleau.projetIHM2022FI2.API.*;
 import java.util.*;
+import java.sql.*;
 /**
  * Une demande de changement de groupe
  * concerne un étudiant, qui est dans un groupe A et veut aller dans un groupe B.
@@ -9,9 +10,6 @@ import java.util.*;
  */
 
 public class ChangementMP implements Changement {
-
-    //auto-incrément des changements
-    private static int nextId=0;
 
     private int id;
     private Groupe a,b;
@@ -22,11 +20,45 @@ public class ChangementMP implements Changement {
         Objects.requireNonNull(b,"On ne peut pas créer un changement avec un groupe à rejoindre null");
         Objects.requireNonNull(e,"On ne peut pas créer un changement concernant un étudiant null");
 
-        this.id=++this.nextId;
         this.a=a;
         this.b=b;
         this.e=e;
+
+        try{
+	    	Class.forName("org.mariadb.jdbc.Driver");		
+	    	try{
+                Connection con = DriverManager.getConnection("jdbc:mariadb://dwarves.iut-fbleau.fr/fouche","fouche", "fouche");
+				try{
+                    
+                    PreparedStatement reqid = con.prepareStatement("select MAX(id) from IHM_Changement");
+                    ResultSet rs = reqid.executeQuery();
+                    rs.next();
+                    this.id=rs.getInt(1)+1;
+                    System.err.println("crea changement id:"+id);
+                    
+                
+                    PreparedStatement req = con.prepareStatement("INSERT INTO IHM_Changement (id,A,B,Etu) VALUES(?,?,?,?);");
+					req.setInt(1,this.id);
+                    req.setInt(2,this.a.getId());
+                    req.setInt(3,this.b.getId());
+                    req.setInt(4,this.e.getId());
+
+					//System.err.println(req);
+		    		req.executeUpdate();
+
+		    		con.close();
+				}catch(SQLException e1){
+				    System.out.println("Erreur dans la requete");
+				    con.close();
+				}
+			}catch(SQLException e2){
+				System.out.println("Erreur de connexion le serveur refuse + "+e2);
+	    	}
+		}catch(ClassNotFoundException e3){
+	    	System.out.println("Erreur de connexion le pilote n'est pas disponible +"+e3);
+		}
     }
+    
     
     /**
      * permet de récupérer l'identifiant du changement (référence interne sans intérêt irl).
@@ -50,6 +82,9 @@ public class ChangementMP implements Changement {
      */
     public Groupe getB(){
         return this.b;
+    }
+    public String getExplication(){
+        return "pas fini en fait";
     }
 
     /**
