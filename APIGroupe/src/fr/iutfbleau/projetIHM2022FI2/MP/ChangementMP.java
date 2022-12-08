@@ -40,7 +40,7 @@ public class ChangementMP implements Changement {
                     System.err.println("crea changement id:"+id);
                     
                 
-                    PreparedStatement req = con.prepareStatement("INSERT INTO IHM_Changement (id,A,B,Etu,explication) VALUES(?,?,?,?,?);");
+                    PreparedStatement req = con.prepareStatement("INSERT INTO IHM_Changement (id,A,B,idEtu,explication) VALUES(?,?,?,?,?);");
 					req.setInt(1,this.id);
                     req.setInt(2,this.a.getId());
                     req.setInt(3,this.b.getId());

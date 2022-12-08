@@ -21,7 +21,7 @@ public class AbstractChangementFactoryMP implements AbstractChangementFactory {
 	    	try{
                 Connection con = DriverManager.getConnection("jdbc:mariadb://dwarves.iut-fbleau.fr/fouche","fouche", "fouche");
 				try{
-                    PreparedStatement reqid = con.prepareStatement("select id from IMH_Changement");
+                    PreparedStatement reqid = con.prepareStatement("select id from IHM_Changement");
                     ResultSet rs = reqid.executeQuery();
                     while(rs.next()){
                         createChangement(rs.getInt("id"));
@@ -120,15 +120,17 @@ public class AbstractChangementFactoryMP implements AbstractChangementFactory {
 	    	try{
                 Connection con = DriverManager.getConnection("jdbc:mariadb://dwarves.iut-fbleau.fr/fouche","fouche", "fouche");
 				try{
-                    PreparedStatement reqid = con.prepareStatement("select id,A,B,nomEtu from IMH_Changement");
+                    PreparedStatement reqid = con.prepareStatement("select id,A,B,nomEtu,explication from IHM_Changement");
+                    System.err.println("test1");
                     ResultSet rs = reqid.executeQuery();
                     rs.next();
+                    System.err.println("test2");
                     int A = rs.getInt("A");
                     int B = rs.getInt("B");
                     String nomEtu = rs.getNString("nomEtu");
                     String explication = rs.getNString("explication");
 
-                    Changement c = new ChangementMP(agf.getBrain().get(A),agf.getEtudiant(nomEtu),agf.getBrain().get(A),explication);
+                    Changement c = new ChangementMP(agf.getBrain().get(A),agf.getEtudiant(nomEtu),agf.getBrain().get(B),explication);
                     this.brain.put(Integer.valueOf(c.getId()),c);  
 
 		    		con.close();

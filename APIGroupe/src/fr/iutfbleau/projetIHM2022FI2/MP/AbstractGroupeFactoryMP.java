@@ -230,7 +230,7 @@ public class AbstractGroupeFactoryMP implements AbstractGroupeFactory {
     /**
      * permet de retrouver les groupes d'un étudiant.
      *
-     * @param Etu un étudiant
+     * @param etu un étudiant
      * @return Etudiant l'étudiant connu de la factory ayant cet identifiant
      *
      * @throws java.lang.NullPointerException si le String est null.

@@ -289,13 +289,13 @@ public class GroupeMP implements Groupe {
                     System.err.println("crea groupe id:"+id);
 
                     this.name=pere.getName()+"_PARTITION_"+ this.id;
-                    PreparedStatement req2 = con.prepareStatement("SELECT idGroupe,idEtu FROM IHM_Appartenance where idGroupe=? ;");
+                    /*PreparedStatement req2 = con.prepareStatement("SELECT idGroupe,idEtu FROM IHM_Appartenance where idGroupe=? ;");
 					req2.setInt(1,pere.getId());
 					//System.err.println(req2);
 		    		ResultSet rs2 = req2.executeQuery();
 
                     while (rs2.next()) {
-                        System.err.println("ca tourne :"+rs2.getInt(2));
+                        //System.err.println("ca tourne :"+rs2.getInt(2));
                         PreparedStatement req3 = con.prepareStatement("INSERT INTO IHM_Appartenance (idGroupe,idEtu) VALUES(?,?);");
 					    req3.setInt(1,this.getId());
 					    req3.setInt(2,rs2.getInt(2));
@@ -303,7 +303,7 @@ public class GroupeMP implements Groupe {
 					    //System.err.println(req);
 		    		    req3.executeUpdate();
                             
-                    }
+                    }*/
                 
                     PreparedStatement req = con.prepareStatement("INSERT INTO IHM_Groupe (id,name,min,max,type,pointpoint) VALUES(?,?,?,?,?,?);");
 					req.setInt(1,this.id);
