@@ -5,6 +5,8 @@ JAVAC_OPTIONS = -d build -cp build:$$CLASSPATH -implicit:none -encoding utf8
 JAVA = java
 JAR = jar
 EXEC_JAR = ${JAVA} -jar
+EXEC_PROF = ${JAVA} /Prof/Vue/MainTest
+EXEC_ETU = ${JAVA} /Etu/Vue/MainTest
 
 # CHEMINS RELATIFS
 SRC = src/fr/iutfbleau/projetIHM2022FI2
@@ -18,6 +20,12 @@ JAR_MNP = test-mnp.jar
 .PHONY : run clean doc
 
 # BUT PAR DEFAUT #
+prof run : ${BUILD}/Prof/Vue/MainTest.class
+	${EXEC_PROF}	${BUILD}/Prof/Vue/MainTest.class
+
+etu run :	${BUILD}/Etu/Vue/MainTest.class
+	${EXEC_ETU} ${BUILD}/Etu/Vue/MainTest.class
+
 run : ${JAR_MNP}
 	${EXEC_JAR} ${JAR_MNP}
 
@@ -127,6 +135,7 @@ ${BUILD}/Etu/Vue/ActionMenuEtu.class : ${SRC}/Etu/Vue/ActionMenuEtu.java \
 ${BUILD}/Etu/Vue/PanneauEtu.class : ${SRC}/Etu/Vue/PanneauEtu.java \
 		${BUILD}/Etu/Vue/PageEtu.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/Etu/Vue/PanneauEtu.java
+	
 
 ${BUILD}/Etu/Vue/PageEtu.class : ${SRC}/Etu/Vue/PageEtu.java \
 		${BUILD}/Etu/Vue/ListeGroupe.class \
@@ -153,9 +162,7 @@ ${BUILD}/Etu/Vue/ListeChangement.class : ${SRC}/Etu/Vue/ListeChangement.java \
 		${BUILD}/Etu/Vue/PageEtu.class
 	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/Etu/Vue/ListeChangement.java
 
-${BUILD}/Etu/Vue/ActionListeEtu.class : ${SRC}/Etu/Vue/ActionListeEtu.java \
-		${BUILD}/Etu/Vue/PageEtu.class 
-	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/Etu/Vue/ActionListeEtu.java
+
 
 ${BUILD}/Etu/Vue/StaticMethodeEtu.class : ${SRC}/Etu/Vue/StaticMethodeEtu.java \
 		${BUILD}/Etu/Vue/MainTest.class
@@ -224,30 +231,3 @@ ${BUILD}/Prof/Vue/TestTexteMNP.class : ${SRC}/Prof/Vue/TestTexteMNP.java
 
 # ## Admin ##
 
-${BUILD}/Admin/Controleur/ActionAdminInstru.class : ${SRC}/Admin/Controleur/ActionAdminInstru.java                
-    ${JAVAC} ${JAVAC_OPTIONS} ${SRC}/Admin/Controleur/ActionAdminInstru.java
-
-${BUILD}/Admin/Controleur/ActionMenuAdmin.class : ${SRC}/Admin/Controleur/ActionMenuAdmin.java \ 
-		${BUILD}/Admin/Controleur/ActionAdminInstru.class 
-    ${JAVAC} ${JAVAC_OPTIONS} ${SRC}/Admin/Controleur/ActionMenuAdmin.java
-
-${BUILD}/Admin/Vue/Pancardlayout.class : ${SRC}/Admin/Controleur/PancardLayout.java \
-        ${BUILD}/Admin/Controleur/ ActionMenuAdmin.class 
-    ${JAVAC} ${JAVAC_OPTIONS} ${SRC}/Admin/Vue/PancardLayout.java
-
-${BUILD}/Admin/Vue/PanTree.class : ${BUILD}/Admin/Vue/PanTree.java 
-    ${JAVAC} ${JAVAC_OPTIONS} ${SRC}/Admin/Vue/PanTree.java
-
-${BUILD}/Admin/Vue/VueAdmin.class : ${SRC}/Admin/Vue/VueAdmin.java \
-        ${BUILD}/Admin/Vue/PanTree.class \
-        ${BUILD}/Admin/Vue/PancardLayout.class \
-		${BUILD}/Admin/Controleur/ActionMenuAdmin.class
-    ${JAVAC} ${JAVAC_OPTIONS} ${SRC}/Admin/Vue/VueAdmin.java
-
-${BUILD}/Modele/Initialisation.class : ${SCR}/Modele/Initialisation.java \
-		${BUILD}/Admin/Vue/VueAdmin.class
-	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/Modele/Initialisation.java
-
-  ${BUILD}/Admin/MainAdmin.class : ${SRC}/Admin/MainAdmin.java \
-		${BUILD}/Modele/Initialisation.class
-	${JAVAC} ${JAVAC_OPTIONS} ${SRC}/Admin/MainAdmin.java
