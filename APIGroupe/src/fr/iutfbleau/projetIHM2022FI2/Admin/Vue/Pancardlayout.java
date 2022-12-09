@@ -73,10 +73,14 @@ public Pancardlayout(JPanel instru,AbstractGroupeFactory agf){
 
         g = new GridLayout(8,1);
         creegroup.setLayout(g);
-        sousgroupe = new JLabel("nom du groupe :");
+        sousgroupe = new JLabel("nom du groupe pere :");
         creegroup.add(sousgroupe);
         groupe = new JTextField();
         creegroup.add(groupe);
+        newgroupe = new JLabel("nom du nouveau groupe");
+        creegroup.add(newgroupe);
+        ngroupe = new JTextField();
+        creegroup.add(ngroupe);
         JLabel nummintext = new JLabel("nombre minimum d'etudiant :");
         creegroup.add(nummintext);
         JTextField nummin = new JTextField();

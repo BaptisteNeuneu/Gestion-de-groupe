@@ -73,12 +73,13 @@ public class ActionAdminInstru implements ActionListener {
          if(c== true){
             int nbrpartition = Integer.parseInt(nbrpartitiontext);
             Groupe pere = gestiongroupe.getGroupeByName(sousgroupe);
+   
             gestiongroupe.createPartition(pere,newgroupe,nbrpartition);
          } else {
          Groupe pere = gestiongroupe.getGroupeByName(sousgroupe);
          int nbrmin = Integer.parseInt(nummintext);
          int nbrmax = Integer.parseInt(nummaxtext);
-         gestiongroupe.createGroupe(pere,newgroupe,15,60);
+         gestiongroupe.createGroupe(pere,newgroupe,nbrmin,nbrmax);
          }
       }
       /**

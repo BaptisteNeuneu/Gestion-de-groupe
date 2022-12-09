@@ -1,74 +1,114 @@
 package fr.iutfbleau.projetIHM2022FI2.Modele;
 
-import fr.iutfbleau.projetIHM2022FI2.MP.*;
+//import fr.iutfbleau.projetIHM2022FI2.MP.*;
 import fr.iutfbleau.projetIHM2022FI2.API.*;
 import fr.iutfbleau.projetIHM2022FI2.MNP.*;
 import fr.iutfbleau.projetIHM2022FI2.Admin.Vue.*;
+import java.util.*;
 
 public class Initialisation{
     /**
      * initilise pour tester 
      */
+    AbstractChangementFactory acf;
+
     public Initialisation(){
 
-    Etudiant e1 = new EtudiantNP("césar", "lycurgus");
-    Etudiant e2 = new EtudiantNP("denis", "uranus");
-    Etudiant e3 = new EtudiantNP("marcel", "castor");
-    Etudiant e4 = new EtudiantNP("marin", "eurydice");
-    Etudiant e5 = new EtudiantNP("constantin", "akoni");
-    Etudiant e6 = new EtudiantNP("donat", "anakoni");
-    Etudiant e7 = new EtudiantNP("alexandre", "apikalia");
-    Etudiant e8 = new EtudiantNP("andré", "ekewaka");
-    Etudiant e9 = new EtudiantNP("renard", "elikapeka");
-    Etudiant e10 = new EtudiantNP("achille", "haukea");
-    Etudiant e11 = new EtudiantNP("agathe", "iakopa");
-    Etudiant e12 = new EtudiantNP("sabine", "spartacus");
-    Etudiant e13 = new EtudiantNP("michel", "caligula");
-    Etudiant e14 = new EtudiantNP("marthe", "alaric");
-    Etudiant e15 = new EtudiantNP("juliane", "hannibal");
-    Etudiant e16 = new EtudiantNP("anne", "juvenal");
-    Etudiant e17 = new EtudiantNP("sophie", "bede");
-    Etudiant e18 = new EtudiantNP("louis", "hamilcar");
-    Etudiant e19 = new EtudiantNP("diane", "ladislas");
-    Etudiant e20 = new EtudiantNP("christine", "mahatma");
-    Etudiant e21 = new EtudiantNP("francine", "napoleon");
-    Etudiant e22 = new EtudiantNP("louise", "lalita");
-    Etudiant e23 = new EtudiantNP("chantal", "laxman");
-    Etudiant e24 = new EtudiantNP("giselle", "laxmi");
-    Etudiant e25 = new EtudiantNP("caroline", "leela");
-    Etudiant e26 = new EtudiantNP("claude", "lila");
-    Etudiant e27 = new EtudiantNP("pauline", "lilavati");
-    Etudiant e28 = new EtudiantNP("avril", "lochan");
-    Etudiant e29 = new EtudiantNP("jacqueline", "madhav");
-    Etudiant e30 = new EtudiantNP("denise", "turlough");
-    Etudiant e31 = new EtudiantNP("gabrielle", "uaithne");
-    Etudiant e32 = new EtudiantNP("julie", "uilleag");
-    Etudiant e33 = new EtudiantNP("madeleine", "uilliam");
-    Etudiant e34 = new EtudiantNP("charlotte", "uinseann");
-    Etudiant e35 = new EtudiantNP("bertrand", "ulick");
-    Etudiant e36 = new EtudiantNP("lucile", "ultan");
-    Etudiant e37 = new EtudiantNP("nicole", "firdaus");
-    Etudiant e38 = new EtudiantNP("blanche", "yasmin");
-    Etudiant e39 = new EtudiantNP("jeanine", "javed");
-    Etudiant e40 = new EtudiantNP("roxane", "naveed");
-    Etudiant e41 = new EtudiantNP("adeline", "shahnaz");
-    Etudiant e42 = new EtudiantNP("dion", "ardashir");
-    Etudiant e43 = new EtudiantNP("liane", "atefeh");
-    Etudiant e44 = new EtudiantNP("myriam", "luigina");
-    Etudiant e45 = new EtudiantNP("danielle", "luigino");
-    Etudiant e46 = new EtudiantNP("arlette", "maddalena");
-    Etudiant e47 = new EtudiantNP("michelle", "manfredo");
-    Etudiant e48 = new EtudiantNP("justine", "manlio");
-    Etudiant e49 = new EtudiantNP("natalie", "marcellino");
-    Etudiant e50 = new EtudiantNP("aline", "mariangela");
-    Etudiant e51 = new EtudiantNP("prosper", "marzio");
-    Etudiant e52 = new EtudiantNP("mirabelle", "massimiliano");
-    Etudiant e53 = new EtudiantNP("carine", "matteo");
-    Etudiant e54 = new EtudiantNP("jeannine", "melchiorre");
-    Etudiant e55 = new EtudiantNP("dianne", "micaela");
-    Etudiant e56 = new EtudiantNP("evette", "michela");
-    Etudiant e57 = new EtudiantNP("gisselle", "michelangela");
-    AbstractGroupeFactory agf = new AbstractGroupeFactoryNP("BUT2 FI", 15, 92);
+        // morceaux de modele
+        
+        // Notez que a gauche d'une declaration on utilise une interface et a droite une version concrete.
+        // Il faut que votre vue se calque sur le fonctionnemment de ce main et ne fasse pas d'hypothese sur l'implementation concrete de l'interface.
+        // i.e. entre les versions non persistantes (qui terminent par NP) et votre implementation eventuelle persistante, le seul changement de comportement devrait etre la persistance.
+        //
+
+        System.out.println("Test de l\'API");
+        System.out.print("Creation des etudiants");
+        
+        Etudiant e1=new EtudiantNP("cesar","lycurgus");
+        Etudiant e2=new EtudiantNP("denis","uranus");
+        Etudiant e3=new EtudiantNP("marcel","castor");
+        Etudiant e4=new EtudiantNP("marin","eurydice");
+        Etudiant e5=new EtudiantNP("constantin","akoni");
+        Etudiant e6=new EtudiantNP("donat","anakoni");
+        Etudiant e7=new EtudiantNP("alexandre","apikalia");
+        Etudiant e8=new EtudiantNP("andre","ekewaka");
+        Etudiant e9=new EtudiantNP("renard","elikapeka");
+        Etudiant e10=new EtudiantNP("achille","haukea");
+
+        System.out.print(".");
+        
+        Etudiant e11=new EtudiantNP("agathe","iakopa");
+        Etudiant e12=new EtudiantNP("sabine","spartacus");
+        Etudiant e13=new EtudiantNP("michel","caligula");
+        Etudiant e14=new EtudiantNP("marthe","alaric");
+        Etudiant e15=new EtudiantNP("juliane","hannibal");
+        Etudiant e16=new EtudiantNP("anne","juvenal");
+        Etudiant e17=new EtudiantNP("sophie","bede");
+        Etudiant e18=new EtudiantNP("louis","hamilcar");
+        Etudiant e19=new EtudiantNP("diane","ladislas");
+        Etudiant e20=new EtudiantNP("christine","mahatma");
+
+        System.out.print(".");
+        
+        Etudiant e21=new EtudiantNP("francine","napoleon");
+        Etudiant e22=new EtudiantNP("louise","lalita");
+        Etudiant e23=new EtudiantNP("chantal","laxman");
+        Etudiant e24=new EtudiantNP("giselle","laxmi");
+        Etudiant e25=new EtudiantNP("caroline","leela");
+        Etudiant e26=new EtudiantNP("claude","lila");
+        Etudiant e27=new EtudiantNP("pauline","lilavati");
+        Etudiant e28=new EtudiantNP("avril","lochan");
+        Etudiant e29=new EtudiantNP("jacqueline","madhav");
+        Etudiant e30=new EtudiantNP("denise","turlough");
+
+        System.out.print(".");
+        
+        Etudiant e31=new EtudiantNP("gabrielle","uaithne");
+        Etudiant e32=new EtudiantNP("julie","uilleag");
+        Etudiant e33=new EtudiantNP("madeleine","uilliam");
+        Etudiant e34=new EtudiantNP("charlotte","uinseann");
+        Etudiant e35=new EtudiantNP("bertrand","ulick");
+        Etudiant e36=new EtudiantNP("lucile","ultan");
+        Etudiant e37=new EtudiantNP("nicole","firdaus");
+        Etudiant e38=new EtudiantNP("blanche","yasmin");
+        Etudiant e39=new EtudiantNP("jeanine","javed");
+        Etudiant e40=new EtudiantNP("roxane","naveed");
+
+        System.out.print(".");
+        
+        Etudiant e41=new EtudiantNP("adeline","shahnaz");
+        Etudiant e42=new EtudiantNP("dion","ardashir");
+        Etudiant e43=new EtudiantNP("liane","atefeh");
+        Etudiant e44=new EtudiantNP("myriam","luigina");
+        Etudiant e45=new EtudiantNP("danielle","luigino");
+        Etudiant e46=new EtudiantNP("arlette","maddalena");
+        Etudiant e47=new EtudiantNP("michelle","manfredo");
+        Etudiant e48=new EtudiantNP("justine","manlio");
+        Etudiant e49=new EtudiantNP("natalie","marcellino");
+        Etudiant e50=new EtudiantNP("aline","mariangela");
+
+        System.out.print(".");
+        
+        Etudiant e51=new EtudiantNP("prosper","marzio");
+        Etudiant e52=new EtudiantNP("mirabelle","massimiliano");
+        Etudiant e53=new EtudiantNP("carine","matteo");
+        Etudiant e54=new EtudiantNP("jeannine","melchiorre");
+        Etudiant e55=new EtudiantNP("dianne","micaela");
+        Etudiant e56=new EtudiantNP("evette","michela");
+        Etudiant e57=new EtudiantNP("gisselle","michelangela");
+
+        System.out.println("termine.");
+
+        System.out.print("Creation de l\'usine a groupe");
+        AbstractGroupeFactory agf = new AbstractGroupeFactoryNP("BUT2 FI", 15, 92);
+        System.out.println("termine.");
+
+        System.out.print("Creation de l\'usine a changement");
+        this.acf = new AbstractChangementFactoryNP(agf);
+        System.out.println("termine.");
+
+        System.out.print("Ajout des etudiants dans le groupe de la promotion racine");
+
         agf.addToGroupe(agf.getPromotion(),e1);
         agf.addToGroupe(agf.getPromotion(),e2);
         agf.addToGroupe(agf.getPromotion(),e3);
@@ -79,6 +119,9 @@ public class Initialisation{
         agf.addToGroupe(agf.getPromotion(),e8);
         agf.addToGroupe(agf.getPromotion(),e9);
         agf.addToGroupe(agf.getPromotion(),e10);
+
+        System.out.print(".");
+
         agf.addToGroupe(agf.getPromotion(),e11);
         agf.addToGroupe(agf.getPromotion(),e12);
         agf.addToGroupe(agf.getPromotion(),e13);
@@ -89,6 +132,9 @@ public class Initialisation{
         agf.addToGroupe(agf.getPromotion(),e18);
         agf.addToGroupe(agf.getPromotion(),e19);
         agf.addToGroupe(agf.getPromotion(),e20);
+
+        System.out.print(".");
+        
         agf.addToGroupe(agf.getPromotion(),e21);
         agf.addToGroupe(agf.getPromotion(),e22);
         agf.addToGroupe(agf.getPromotion(),e23);
@@ -108,6 +154,9 @@ public class Initialisation{
         agf.addToGroupe(agf.getPromotion(),e37);
         agf.addToGroupe(agf.getPromotion(),e38);
         agf.addToGroupe(agf.getPromotion(),e39);
+
+        System.out.print(".");
+        
         agf.addToGroupe(agf.getPromotion(),e40);
         agf.addToGroupe(agf.getPromotion(),e41);
         agf.addToGroupe(agf.getPromotion(),e42);
@@ -126,8 +175,70 @@ public class Initialisation{
         agf.addToGroupe(agf.getPromotion(),e55);
         agf.addToGroupe(agf.getPromotion(),e56);
         agf.addToGroupe(agf.getPromotion(),e57);
+        System.out.println("termine.");
+
+        System.out.println("Initialisation complete.");
+        
+        System.out.println("==========================");
+        System.out.println("Le groupe promotion");
+        System.out.println(agf.getPromotion().monPrint());
+
+        System.out.println("==========================");
+        System.out.println("Partition du groupe racine en 3 groupes TD.");
+        agf.createPartition(agf.getPromotion(), "TD",4);
+        //System.out.println(agf.getPromotion().monPrint());
+
+        Groupe racineDeLaPartition = agf.getPromotion().getSousGroupes().iterator().next();
+        System.out.println(racineDeLaPartition.monPrint());
+
+        System.out.println("== Cette version ajoute les etudiants automatiquement pour une partition ");
+        for(Groupe g : racineDeLaPartition.getSousGroupes()){
+            System.out.println(g.monPrint());
+        }
+
+        System.out.println("==========================");
+        System.out.println("Creation d'un changement");
+        Iterator<Groupe> itgr = racineDeLaPartition.getSousGroupes().iterator();
+        Groupe A = itgr.next(); // premier sous-groupe
+        Groupe B = itgr.next(); // second sous-groupe
+        B = itgr.next(); // troisieme sous-groupe
+        Etudiant e = A.getEtudiants().iterator().next();// premier etudiant du premier sous-groupe.
+        this.acf.createChangement(A,e,B,"a");
+        System.out.println("Recuperation des changements (en fait un seul pour l'instant)");
+        Iterator<Changement> itch = this.acf.getAllChangements().iterator();
+        Changement c = itch.next();
+        System.out.println(c.monPrint());
+        System.out.println("Application du changement");
+        this.acf.applyChangement(c);
+        System.out.println("==========================");
+        System.out.println("== nouveau contenu des groupes de la partition ");
+        for(Groupe g : racineDeLaPartition.getSousGroupes()){
+            System.out.println(g.monPrint());
+        }
+
+        System.out.println("==========================");
+        System.out.println("Creation de 2 changements");
+        itgr = racineDeLaPartition.getSousGroupes().iterator();
+        A = itgr.next(); // premier sous-groupe
+        B = itgr.next(); // second sous-groupe
+        Etudiant etu1 = A.getEtudiants().iterator().next();// premier etudiant du premier sous-groupe.
+        Etudiant etu2 = B.getEtudiants().iterator().next();// premier etudiant du premier sous-groupe.
+        this.acf.createChangement(A,etu1,B,"b");
+        this.acf.createChangement(B,etu2,A,"c");
+        // Impression des changements.
+        for (Changement cgt : this.acf.getAllChangements()){
+            System.out.println(cgt.monPrint());
+        }
+        itch = this.acf.getAllChangements().iterator();
+        c = itch.next();
+        System.out.println("Suppression d'un changement. Il reste :");
+        this.acf.deleteChangement(itch.next());
+        for (Changement cgt : this.acf.getAllChangements()){
+            System.out.println(cgt.monPrint());
+        }
+        
         new VueAdmin(agf);
     }
 
-    
+
 }
